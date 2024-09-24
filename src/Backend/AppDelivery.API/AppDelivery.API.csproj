@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<InvariantGlobalization>false</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\AppDelivery.Communication\AppDelivery.Communication.csproj" />
+    <ProjectReference Include="..\..\Shared\AppDelivery.Exceptions\AppDelivery.Exceptions.csproj" />
+    <ProjectReference Include="..\AppDelivery.Application\AppDelivery.Application.csproj" />
+    <ProjectReference Include="..\AppDelivery.Infrastructure\AppDelivery.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
