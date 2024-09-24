@@ -1,4 +1,4 @@
-﻿using AppDelivery.Domain.Entities;
+﻿using AppDelivery.Domain.Entities.User;
 using AppDelivery.Domain.Repositories.User;
 using Microsoft.EntityFrameworkCore;
 

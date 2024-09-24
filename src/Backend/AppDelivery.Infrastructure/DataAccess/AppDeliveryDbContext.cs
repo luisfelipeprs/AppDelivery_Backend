@@ -1,4 +1,4 @@
-﻿using AppDelivery.Domain.Entities;
+﻿using AppDelivery.Domain.Entities.User;
 using Microsoft.EntityFrameworkCore;
 
 namespace AppDelivery.Infrastructure.DataAccess;

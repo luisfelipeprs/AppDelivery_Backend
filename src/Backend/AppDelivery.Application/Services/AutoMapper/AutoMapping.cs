@@ -1,5 +1,5 @@
 ﻿using AppDelivery.Communication.Requests;
-using AppDelivery.Domain.Entities;
+using AppDelivery.Domain.Entities.User;
 using AutoMapper;
 
 namespace AppDelivery.Application.Services.AutoMapper;

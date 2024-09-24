@@ -2,7 +2,6 @@
 using AppDelivery.Application.Services.Cryptography;
 using AppDelivery.Communication.Requests;
 using AppDelivery.Communication.Responses;
-using AppDelivery.Domain.Entities;
 using AppDelivery.Domain.Repositories;
 using AppDelivery.Domain.Repositories.User;
 using AppDelivery.Exceptions;
@@ -37,7 +36,7 @@ public class RegisterUserUseCase : IRegisterUserUseCase
     {
         await Validate(request);
 
-        var user = _mapper.Map<Domain.Entities.User>(request);
+        var user = _mapper.Map<Domain.Entities.User.User>(request);
 
         user.Password = _passwordEncripter.Encrypt(request.Password); 
 
