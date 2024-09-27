@@ -1,17 +1,17 @@
 ﻿namespace AppDelivery.Communication.Responses;
 public class ResponseErrorJson
 {
-    public IList<string> Errors { get; set; }
+    public List<string> ErrorMessages { get; set; }
 
-    public ResponseErrorJson(IList<string> errors) => Errors = errors;
-
-    public ResponseErrorJson(string error)
+    public ResponseErrorJson(string errorMessage)
     {
-        //Errors = new List<string>();
-        //Errors.Add(error);
-        Errors = new List<string>
-        {
-            error
-        };
+        ErrorMessages = new List<string> { errorMessage };
+    }
+
+    public bool TokenIsExpired { get; set; }
+
+    public ResponseErrorJson(List<string> errorMessage)
+    {
+        ErrorMessages = errorMessage;
     }
 }

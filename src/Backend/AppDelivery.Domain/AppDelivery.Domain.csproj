@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Repositories\Consumer\**" />
+    <EmbeddedResource Remove="Repositories\Consumer\**" />
+    <None Remove="Repositories\Consumer\**" />
+  </ItemGroup>
+
 </Project>

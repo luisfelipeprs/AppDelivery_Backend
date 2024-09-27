@@ -1,11 +1,8 @@
-﻿using AppDelivery.Application.Services.AutoMapper;
-using AppDelivery.Application.Services.Cryptography;
+﻿using AppDelivery.Application.Services.Cryptography;
 using AppDelivery.Communication.Requests;
 using AppDelivery.Communication.Responses;
 using AppDelivery.Domain.Repositories;
 using AppDelivery.Domain.Repositories.User;
-using AppDelivery.Exceptions;
-using AppDelivery.Exceptions.ExceptionsBase;
 using AutoMapper;
 
 namespace AppDelivery.Application.UseCases.User;
@@ -34,15 +31,14 @@ public class RegisterUserUseCase : IRegisterUserUseCase
 
     public async Task<ResponseRegisteredUserJson> Execute(RequestRegisterUserJson request)
     {
-        await Validate(request);
+        //await Validate(request);
 
-        var user = _mapper.Map<Domain.Entities.User.User>(request);
+        var user = _mapper.Map<Domain.Entities.User>(request);
 
         user.Password = _passwordEncripter.Encrypt(request.Password); 
 
         await _writeOnlyRepository.Add(user);
-
-        await _unitOfWork.Commit();
+        await _unitOfWork.Commit(); 
 
         return new ResponseRegisteredUserJson 
         { 
@@ -56,18 +52,18 @@ public class RegisterUserUseCase : IRegisterUserUseCase
 
         var result = validator.Validate(request);
 
-        var emailExister = await _readOnlyRepository.ExistActiveUserWithEmail(request.Email);
-        if (emailExister)
-        {
-            result.Errors.Add(new FluentValidation.Results.ValidationFailure(string.Empty, ResourceMessagesException.EMAIL_ALREADY_EXISTS));
-        }
+        //var emailExister = await _readOnlyRepository.ExistActiveUserWithEmail(request.Email);
+        //if (emailExister)
+        //{
+        //    result.Errors.Add(new FluentValidation.Results.ValidationFailure(string.Empty, ResourceMessagesException.EMAIL_ALREADY_EXISTS));
+        //}
 
-        if (result.IsValid == false)
-        {
-            var errorMessages = result.Errors.Select(e => e.ErrorMessage).ToList();
+        //if (result.IsValid == false)
+        //{
+        //    var errorMessages = result.Errors.Select(e => e.ErrorMessage).ToList();
 
-            throw new ErrorOnValidationException(errorMessages);
-        }
+        //    throw new ErrorOnValidationException(errorMessages);
+        //}
         //if (string.IsNullOrEmpty(request.Name))
         //{
         //    throw new ArgumentException();

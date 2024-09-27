@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Requests\RequestConsumerJson.cs" />
+    <Compile Remove="Requests\RequestRegisterConsumerJson.cs" />
+    <Compile Remove="Responses\ResponseRegisteredConsumerJson.cs" />
+  </ItemGroup>
+
 </Project>

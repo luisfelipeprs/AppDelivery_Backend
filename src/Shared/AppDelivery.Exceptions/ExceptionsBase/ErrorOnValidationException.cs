@@ -1,10 +1,19 @@
-﻿namespace AppDelivery.Exceptions.ExceptionsBase;
+﻿using System.Net;
+
+namespace AppDelivery.Exception.ExceptionBase;
 public class ErrorOnValidationException : AppDeliveryException
 {
-    public IList<string> ErrorsMessages { get; set; }
+    private readonly List<string> _errors;
 
-    public ErrorOnValidationException(IList<string> errorsMessages)
+    public override int StatusCode => (int)HttpStatusCode.BadRequest;
+
+    public ErrorOnValidationException(List<string> errorMessages) : base(string.Empty)
     {
-        ErrorsMessages = errorsMessages;
+        _errors = errorMessages;
+    }
+
+    public override List<string> GetErrors()
+    {
+        return _errors;
     }
 }

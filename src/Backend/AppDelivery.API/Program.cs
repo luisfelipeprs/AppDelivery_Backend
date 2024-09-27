@@ -1,7 +1,9 @@
-using AppDelivery.API.Filters;
-using GscareApiAspNetCore.Api.Middleware;
+using AppDelivery.Api.Filters;
+using AppDelivery.Api.Middleware;
 using AppDelivery.Application;
 using AppDelivery.Infrastructure;
+using AppDelivery.Infrastructure.Extensions;
+using AppDelivery.Infrastructure.Migrations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,4 +35,14 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+//MigrateDatabase();
+
 app.Run();
+void MigrateDatabase()
+{
+    var connectionString = builder.Configuration.ConnectionString();
+
+    var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
+
+    DatabaseMigration.Migrate(connectionString, serviceScope.ServiceProvider);
+}

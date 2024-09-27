@@ -7,6 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="UseCases\Consumer\**" />
+    <EmbeddedResource Remove="UseCases\Consumer\**" />
+    <None Remove="UseCases\Consumer\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="UseCases\User\RequestUserJson.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="FluentValidation" Version="11.10.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />

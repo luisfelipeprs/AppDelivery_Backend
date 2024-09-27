@@ -1,12 +1,9 @@
 ﻿using AppDelivery.Communication.Responses;
-using AppDelivery.Exceptions;
-using AppDelivery.Exceptions.ExceptionsBase;
+using AppDelivery.Exception.ExceptionBase;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System;
-using System.Net;
 
-namespace AppDelivery.API.Filters;
+namespace AppDelivery.Api.Filters;
 
 public class ExceptionFilter : IExceptionFilter
 {
@@ -18,24 +15,24 @@ public class ExceptionFilter : IExceptionFilter
         }
         else
         {
-            ThrowUnknowException(context);
+            //ThrowUnkowError(context);
         }
     }
 
     private void HandleProjectException(ExceptionContext context)
     {
-        if (context.Exception is ErrorOnValidationException)
-        {
-            var exception = context.Exception as ErrorOnValidationException;
+        var cashFlowException = (AppDeliveryException)context.Exception;
+        var errorResponse = new ResponseErrorJson(cashFlowException.GetErrors());
 
-            context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-            context.Result = new BadRequestObjectResult(new ResponseErrorJson(exception.ErrorsMessages));
-        }
+        context.HttpContext.Response.StatusCode = cashFlowException.StatusCode;
+        context.Result = new ObjectResult(errorResponse);
     }
 
-    private void ThrowUnknowException(ExceptionContext context)
+    private void ThrowUnkowError(ExceptionContext context)
     {
-        context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-        context.Result = new ObjectResult(new ResponseErrorJson(ResourceMessagesException.UNKNOWN_ERROR));
+        var errorResponse = new ResponseErrorJson("Unknown Error");
+
+        context.HttpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
+        context.Result = new ObjectResult(errorResponse);
     }
 }

@@ -1,6 +1,5 @@
-﻿using AppDelivery.Domain.Entities.User;
-using Microsoft.EntityFrameworkCore;
-
+﻿using Microsoft.EntityFrameworkCore;
+using AppDelivery.Domain.Entities;
 namespace AppDelivery.Infrastructure.DataAccess;
 public class AppDeliveryDbContext : DbContext
 {

@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace GscareApiAspNetCore.Api.Middleware;
+namespace AppDelivery.Api.Middleware;
 
 public class CultureMiddleware
 {

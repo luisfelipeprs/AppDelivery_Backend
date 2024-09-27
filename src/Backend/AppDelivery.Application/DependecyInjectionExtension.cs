@@ -1,6 +1,8 @@
 ﻿using AppDelivery.Application.Services.AutoMapper;
 using AppDelivery.Application.Services.Cryptography;
+using AppDelivery.Application.UseCases;
 using AppDelivery.Application.UseCases.User;
+using AppDelivery.Domain.Repositories.User;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AppDelivery.Application;
@@ -24,6 +26,10 @@ public static class DependecyInjectionExtension
     private static void AddUseCases(IServiceCollection services)
     {
         services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
+        services.AddScoped<IGetUsersUseCase, GetUsersUseCase>();
+        services.AddScoped<IGetUserByIdUseCase, GetUsersUseCase>();
+        services.AddScoped<IUpdateUserUseCase, UpdateUserUseCase>();
+        services.AddScoped<IDeleteUserUseCase, DeleteUserUseCase>();
     }
 
     private static void AddPasswordEncrypter(IServiceCollection services)
