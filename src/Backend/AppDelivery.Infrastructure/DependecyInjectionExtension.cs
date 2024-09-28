@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using AppDelivery.Domain.Repositories.Consumidor;
+using AppDelivery.Domain.Repositories.Company;
+using AppDelivery.Domain.Repositories.Driver;
 
 namespace AppDelivery.Infrastructure;
 public static class DependecyInjectionExtension
@@ -37,6 +40,18 @@ public static class DependecyInjectionExtension
         services.AddScoped<IUserWriteOnlyRepository, UserRepository>();
         services.AddScoped<IUserReadOnlyRepository, UserRepository>();
         services.AddScoped<IUserUpdateOnlyRepository, UserRepository>();
+
+        services.AddScoped<IConsumidorWriteOnlyRepository, ConsumidorRepository>();
+        services.AddScoped<IConsumidorReadOnlyRepository, ConsumidorRepository>();
+        services.AddScoped<IConsumidorUpdateOnlyRepository, ConsumidorRepository>();
+
+        services.AddScoped<ICompanyWriteOnlyRepository, CompanyRepository>();
+        services.AddScoped<ICompanyReadOnlyRepository, CompanyRepository>();
+        services.AddScoped<ICompanyUpdateOnlyRepository, CompanyRepository>();
+
+        services.AddScoped<IDriverWriteOnlyRepository, DriverRepository>();
+        services.AddScoped<IDriverReadOnlyRepository, DriverRepository>();
+        services.AddScoped<IDriverUpdateOnlyRepository, DriverRepository>();
     }
     private static void AddFluentMigrator_MySql(IServiceCollection services, IConfiguration configuration)
     {

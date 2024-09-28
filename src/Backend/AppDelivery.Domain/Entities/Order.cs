@@ -12,10 +12,10 @@ namespace AppDelivery.Domain.Entities
         public DateTime OrderDate { get; set; }
         public decimal TotalPrice { get; set; }
         public int ConsumerId { get; set; }
-        public Consumer Consumer { get; set; }
+        public Consumidor? Consumidor { get; set; }
         public int CompanyId { get; set; }
-        public Company Company { get; set; }
-        public Delivery Delivery { get; set; }
+        public Company? Company { get; set; }
+        public Delivery? Delivery { get; set; }
     }
 
 }

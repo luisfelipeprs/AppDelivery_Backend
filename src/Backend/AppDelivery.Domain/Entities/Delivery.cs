@@ -10,15 +10,15 @@ namespace AppDelivery.Domain.Entities
     {
         public int DeliveryId { get; set; }
         public DateTime DeliveryDate { get; set; }
-        public string DeliveryStatus { get; set; }
+        public string DeliveryStatus { get; set; } = string.Empty;
 
         // Relacionamento com o entregador
         public int DeliveryPersonId { get; set; }
-        public Driver Driver { get; set; }
+        public Driver? Driver { get; set; }
 
         // Relacionamento com o pedido
         public int OrderId { get; set; }
-        public Order Order { get; set; }
+        public Order? Order { get; set; }
     }
 
 }

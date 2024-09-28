@@ -1,17 +1,20 @@
 ﻿namespace AppDelivery.Domain.Entities
 {
-    public class Company : User
+    public class Company
     {
-        public int Id { get; set; }
-        public string Cnpj { get; set; }
-        public string Cep { get; set; }
-        public string Street { get; set; }
-        public string NumberLocation { get; set; }
-        public string Neighborhood { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Phone { get; set; }
-        public string Email { get; set; }
-        public DateTime DateSignup { get; set; }
+        public long Id { get; set; }
+        public bool Active { get; set; } = true;
+        public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
+        public string Name { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        public string Cnpj { get; set; } = string.Empty;
+        public string Cep { get; set; } = string.Empty;
+        public string Street { get; set; } = string.Empty;
+        public string NumberLocation { get; set; } = string.Empty;
+        public string Neighborhood { get; set; } = string.Empty;
+        public string City { get; set; } = string.Empty;
+        public string State { get; set; } = string.Empty;
+        public string Phone { get; set; } = string.Empty;
     }
 }

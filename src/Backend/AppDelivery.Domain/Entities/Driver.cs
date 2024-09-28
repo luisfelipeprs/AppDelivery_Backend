@@ -8,16 +8,21 @@ namespace AppDelivery.Domain.Entities
         Internal,
         External
     }
-    public class Driver : User
+    public class Driver
     {
-        public string Cnh { get; set; }
-        public string Vehicle { get; set; }
-        public string DocumentationVehicle { get; set; }
+        public long Id { get; set; }
+        public bool Active { get; set; } = true;
+        public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
+        public string Name { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        public string Cnh { get; set; } = string.Empty;
+        public string Vehicle { get; set; } = string.Empty;
+        public string DocumentationVehicle { get; set; } = string.Empty;
 
-        public int? EmpresaId { get; set; }
+        public int? CompanyId { get; set; }
         public TypeDriver TypeDriver { get; set; }
-        public DateTime DataCadastro { get; set; }
 
-        public ICollection<Delivery> Deliveries { get; set; }
+        //public ICollection<Delivery> Deliveries { get; set; }
     }
 }
