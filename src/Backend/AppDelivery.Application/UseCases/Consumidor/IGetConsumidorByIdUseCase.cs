@@ -1,5 +1,5 @@
-﻿namespace AppDelivery.Application.UseCases.Consumidor;
-public interface IGetConsumidorByIdUseCase
+﻿namespace AppDelivery.Application.UseCases.Consumer;
+public interface IGetConsumerByIdUseCase
 {
-    Task<Domain.Entities.Consumidor> Execute(long id);
+    Task<Domain.Entities.Consumer> Execute(long id);
 }

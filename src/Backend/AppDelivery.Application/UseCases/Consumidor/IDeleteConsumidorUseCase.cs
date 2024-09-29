@@ -1,5 +1,5 @@
-﻿namespace AppDelivery.Application.UseCases.Consumidor;
-public interface IDeleteConsumidorUseCase
+﻿namespace AppDelivery.Application.UseCases.Consumer;
+public interface IDeleteConsumerUseCase
 {
     Task Execute(long id);
 }

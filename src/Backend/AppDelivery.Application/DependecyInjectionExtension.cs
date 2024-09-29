@@ -2,8 +2,9 @@
 using AppDelivery.Application.Services.Cryptography;
 using AppDelivery.Application.UseCases;
 using AppDelivery.Application.UseCases.Company;
-using AppDelivery.Application.UseCases.Consumidor;
+using AppDelivery.Application.UseCases.Consumer;
 using AppDelivery.Application.UseCases.Driver;
+using AppDelivery.Application.UseCases.Order;
 using AppDelivery.Application.UseCases.User;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -35,11 +36,11 @@ public static class DependecyInjectionExtension
         services.AddScoped<IDeleteUserUseCase, DeleteUserUseCase>();
 
         // consumers
-        services.AddScoped<IRegisterConsumidorUseCase, RegisterConsumidorUseCase>();
-        services.AddScoped<IGetConsumidorUseCase, GetConsumidorUseCase>();
-        services.AddScoped<IGetConsumidorByIdUseCase, GetConsumidorUseCase>();
-        services.AddScoped<IUpdateConsumidorUseCase, UpdateConsumidorUseCase>();
-        services.AddScoped<IDeleteConsumidorUseCase, DeleteConsumidorUseCase>();
+        services.AddScoped<IRegisterConsumerUseCase, RegisterConsumerUseCase>();
+        services.AddScoped<IGetConsumerUseCase, GetConsumerUseCase>();
+        services.AddScoped<IGetConsumerByIdUseCase, GetConsumerUseCase>();
+        services.AddScoped<IUpdateConsumerUseCase, UpdateConsumerUseCase>();
+        services.AddScoped<IDeleteConsumerUseCase, DeleteConsumerUseCase>();
 
         // company
         services.AddScoped<IRegisterCompanyUseCase, RegisterCompanyUseCase>();
@@ -48,12 +49,20 @@ public static class DependecyInjectionExtension
         services.AddScoped<IUpdateCompanyUseCase, UpdateCompanyUseCase>();
         services.AddScoped<IDeleteCompanyUseCase, DeleteCompanyUseCase>();
 
-        // driverDriver
+        // driver
         services.AddScoped<IRegisterDriverUseCase, RegisterDriverUseCase>();
         services.AddScoped<IGetDriverUseCase, GetDriverUseCase>();
         services.AddScoped<IGetDriverByIdUseCase, GetDriverUseCase>();
         services.AddScoped<IUpdateDriverUseCase, UpdateDriverUseCase>();
         services.AddScoped<IDeleteDriverUseCase, DeleteDriverUseCase>();
+
+
+        // order
+        services.AddScoped<IRegisterOrderUseCase, RegisterOrderUseCase>();
+        services.AddScoped<IGetOrderUseCase, GetOrderUseCase>();
+        services.AddScoped<IGetOrderByIdUseCase, GetOrderUseCase>();
+        services.AddScoped<IUpdateOrderUseCase, UpdateOrderUseCase>();
+        services.AddScoped<IDeleteOrderUseCase, DeleteOrderUseCase>();
     }
 
     private static void AddPasswordEncrypter(IServiceCollection services)

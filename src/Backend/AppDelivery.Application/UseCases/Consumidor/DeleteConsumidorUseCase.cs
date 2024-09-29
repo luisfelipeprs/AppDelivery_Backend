@@ -1,14 +1,14 @@
 ﻿using AppDelivery.Domain.Repositories;
-using AppDelivery.Domain.Repositories.Consumidor;
+using AppDelivery.Domain.Repositories.Consumer;
 using AppDelivery.Exception.ExceptionBase;
 
-namespace AppDelivery.Application.UseCases.Consumidor;
-public class DeleteConsumidorUseCase : IDeleteConsumidorUseCase
+namespace AppDelivery.Application.UseCases.Consumer;
+public class DeleteConsumerUseCase : IDeleteConsumerUseCase
 {
-    private readonly IConsumidorWriteOnlyRepository _repository;
+    private readonly IConsumerWriteOnlyRepository _repository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public DeleteConsumidorUseCase(IConsumidorWriteOnlyRepository repository, IUnitOfWork unitOfWork)
+    public DeleteConsumerUseCase(IConsumerWriteOnlyRepository repository, IUnitOfWork unitOfWork)
     {
         _repository = repository;
         _unitOfWork = unitOfWork;
@@ -20,7 +20,7 @@ public class DeleteConsumidorUseCase : IDeleteConsumidorUseCase
 
         if (result == false)
         {
-            throw new NotFoundException("Consumidor não encontrado.");
+            throw new NotFoundException("Consumer não encontrado.");
         }
 
         await _unitOfWork.Commit();

@@ -1,14 +1,6 @@
-﻿using System;
-
-namespace AppDelivery.Domain.Entities
+﻿namespace AppDelivery.Communication.Requests
 {
-    public enum TypeDriver
-    {
-        Undefined,
-        Internal,
-        External
-    }
-    public class Driver
+    public class RequestRegisterDriverJson
     {
         public long Id { get; set; }
         public bool Active { get; set; } = true;
@@ -21,8 +13,5 @@ namespace AppDelivery.Domain.Entities
         public string DocumentationVehicle { get; set; } = string.Empty;
 
         public int? CompanyId { get; set; }
-        public TypeDriver TypeDriver { get; set; }
-
-        public ICollection<Delivery>? Deliveries { get; set; }
     }
 }

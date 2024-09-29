@@ -1,19 +1,19 @@
 ﻿using AppDelivery.Communication.Requests;
 using AppDelivery.Communication.Responses;
 using AppDelivery.Domain.Repositories;
-using AppDelivery.Domain.Repositories.Consumidor;
+using AppDelivery.Domain.Repositories.Consumer;
 using AppDelivery.Exception.ExceptionBase;
 using AutoMapper;
 
-namespace AppDelivery.Application.UseCases.Consumidor;
-public class UpdateConsumidorUseCase : IUpdateConsumidorUseCase
+namespace AppDelivery.Application.UseCases.Consumer;
+public class UpdateConsumerUseCase : IUpdateConsumerUseCase
 {
     private readonly IMapper _mapper;
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IGetConsumidorByIdUseCase _readOnlyRepository;
-    private readonly IConsumidorUpdateOnlyRepository _repository;
+    private readonly IGetConsumerByIdUseCase _readOnlyRepository;
+    private readonly IConsumerUpdateOnlyRepository _repository;
 
-    public UpdateConsumidorUseCase(IMapper mapper, IUnitOfWork unitOfWork, IConsumidorUpdateOnlyRepository repository, IGetConsumidorByIdUseCase readOnlyRepository)
+    public UpdateConsumerUseCase(IMapper mapper, IUnitOfWork unitOfWork, IConsumerUpdateOnlyRepository repository, IGetConsumerByIdUseCase readOnlyRepository)
     {
         _mapper = mapper;
         _unitOfWork = unitOfWork;
@@ -21,24 +21,24 @@ public class UpdateConsumidorUseCase : IUpdateConsumidorUseCase
         _readOnlyRepository = readOnlyRepository;
     }
 
-    public async Task Execute(long Id, RequestConsumidorJson request)
+    public async Task Execute(long Id, RequestConsumerJson request)
     {
         //Validate(request);
 
-        var Consumidor = await _repository.GetById(Id);
-        if (Consumidor is null) throw new NotFoundException("Consumidor não encontrado.");
+        var Consumer = await _repository.GetById(Id);
+        if (Consumer is null) throw new NotFoundException("Consumer não encontrado.");
 
-        // pega os dados da request e insere dentro do objeto => Consumidor(ja criado)
-        _mapper.Map(request, Consumidor);
+        // pega os dados da request e insere dentro do objeto => Consumer(ja criado)
+        _mapper.Map(request, Consumer);
 
-        _repository.Update(Consumidor);
+        _repository.Update(Consumer);
 
         await _unitOfWork.Commit();
     }
 
-    private void Validate(RequestRegisterConsumidorJson request)
+    private void Validate(RequestRegisterConsumerJson request)
     {
-        var validator = new RegisterConsumidorValidator();
+        var validator = new RegisterConsumerValidator();
 
         var result = validator.Validate(request);
 

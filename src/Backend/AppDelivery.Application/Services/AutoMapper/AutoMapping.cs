@@ -18,10 +18,10 @@ internal class AutoMapping : Profile
             .ForMember(dest => dest.Password, opt => opt.Ignore())
             .ForMember(dest => dest.Id, opt => opt.Ignore());
 
-        CreateMap<RequestRegisterConsumidorJson, Consumidor>()
+        CreateMap<RequestRegisterConsumerJson, Consumer>()
             .ForMember(dest => dest.Password, opt => opt.Ignore())
             .ForMember(dest => dest.Id, opt => opt.Ignore());
-        CreateMap<RequestConsumidorJson, Consumidor>()
+        CreateMap<RequestConsumerJson, Consumer>()
            .ForMember(dest => dest.Password, opt => opt.Ignore())
            .ForMember(dest => dest.Id, opt => opt.Ignore());
 
@@ -36,6 +36,18 @@ internal class AutoMapping : Profile
         CreateMap<RequestDriverJson, Driver>()
           .ForMember(dest => dest.Password, opt => opt.Ignore())
           .ForMember(dest => dest.Id, opt => opt.Ignore());
+
+
+        CreateMap<RequestRegisterOrderJson, Order>()
+          .ForMember(dest => dest.Id, opt => opt.Ignore())
+          .ForMember(dest => dest.Consumer, opt => opt.Ignore())
+          .ForMember(dest => dest.Company, opt => opt.Ignore())
+          .ForMember(dest => dest.Delivery, opt => opt.Ignore());
+        CreateMap<RequestOrderJson, Order>()
+          .ForMember(dest => dest.Id, opt => opt.Ignore())
+          .ForMember(dest => dest.Consumer, opt => opt.Ignore())
+          .ForMember(dest => dest.Company, opt => opt.Ignore())
+          .ForMember(dest => dest.Delivery, opt => opt.Ignore());
     }
     private void DomainToResponse()
     {

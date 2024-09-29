@@ -8,9 +8,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using AppDelivery.Domain.Repositories.Consumidor;
+using AppDelivery.Domain.Repositories.Consumer;
 using AppDelivery.Domain.Repositories.Company;
 using AppDelivery.Domain.Repositories.Driver;
+using AppDelivery.Domain.Repositories.Order;
 
 namespace AppDelivery.Infrastructure;
 public static class DependecyInjectionExtension
@@ -41,9 +42,9 @@ public static class DependecyInjectionExtension
         services.AddScoped<IUserReadOnlyRepository, UserRepository>();
         services.AddScoped<IUserUpdateOnlyRepository, UserRepository>();
 
-        services.AddScoped<IConsumidorWriteOnlyRepository, ConsumidorRepository>();
-        services.AddScoped<IConsumidorReadOnlyRepository, ConsumidorRepository>();
-        services.AddScoped<IConsumidorUpdateOnlyRepository, ConsumidorRepository>();
+        services.AddScoped<IConsumerWriteOnlyRepository, ConsumerRepository>();
+        services.AddScoped<IConsumerReadOnlyRepository, ConsumerRepository>();
+        services.AddScoped<IConsumerUpdateOnlyRepository, ConsumerRepository>();
 
         services.AddScoped<ICompanyWriteOnlyRepository, CompanyRepository>();
         services.AddScoped<ICompanyReadOnlyRepository, CompanyRepository>();
@@ -52,6 +53,10 @@ public static class DependecyInjectionExtension
         services.AddScoped<IDriverWriteOnlyRepository, DriverRepository>();
         services.AddScoped<IDriverReadOnlyRepository, DriverRepository>();
         services.AddScoped<IDriverUpdateOnlyRepository, DriverRepository>();
+
+        services.AddScoped<IOrderWriteOnlyRepository, OrderRepository>();
+        services.AddScoped<IOrderReadOnlyRepository, OrderRepository>();
+        services.AddScoped<IOrderUpdateOnlyRepository, OrderRepository>();
     }
     private static void AddFluentMigrator_MySql(IServiceCollection services, IConfiguration configuration)
     {

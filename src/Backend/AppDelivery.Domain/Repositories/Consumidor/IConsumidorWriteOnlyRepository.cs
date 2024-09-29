@@ -1,6 +1,6 @@
-﻿namespace AppDelivery.Domain.Repositories.Consumidor;
-public interface IConsumidorWriteOnlyRepository
+﻿namespace AppDelivery.Domain.Repositories.Consumer;
+public interface IConsumerWriteOnlyRepository
 {
-    public Task Add(Entities.Consumidor consumidor);
+    public Task Add(Entities.Consumer consumer);
     Task<bool> Delete(long id);
 }

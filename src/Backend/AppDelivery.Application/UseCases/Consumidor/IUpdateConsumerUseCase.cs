@@ -1,7 +1,7 @@
 ﻿using AppDelivery.Communication.Requests;
 
-public interface IUpdateConsumidorUseCase
+public interface IUpdateConsumerUseCase
 {
-    Task Execute(long Id, RequestConsumidorJson request);
+    Task Execute(long Id, RequestConsumerJson request);
 
 }

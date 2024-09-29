@@ -1,6 +1,6 @@
-﻿namespace AppDelivery.Domain.Repositories.Consumidor;
-public interface IConsumidorUpdateOnlyRepository
+﻿namespace AppDelivery.Domain.Repositories.Consumer;
+public interface IConsumerUpdateOnlyRepository
 {
-    void Update(Entities.Consumidor consumidor);
-    Task<Entities.Consumidor?> GetById(long id);
+    void Update(Entities.Consumer consumer);
+    Task<Entities.Consumer?> GetById(long id);
 }

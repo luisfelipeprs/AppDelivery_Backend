@@ -1,24 +1,24 @@
 ﻿using AppDelivery.Application.Services.Cryptography;
-using AppDelivery.Application.UseCases.Consumidor;
+using AppDelivery.Application.UseCases.Consumer;
 using AppDelivery.Communication.Requests;
 using AppDelivery.Communication.Responses;
 using AppDelivery.Domain.Repositories;
-using AppDelivery.Domain.Repositories.Consumidor;
+using AppDelivery.Domain.Repositories.Consumer;
 using AppDelivery.Domain.Repositories.User;
 using AutoMapper;
 
-namespace AppDelivery.Application.UseCases.Consumidor;
-public class RegisterConsumidorUseCase : IRegisterConsumidorUseCase
+namespace AppDelivery.Application.UseCases.Consumer;
+public class RegisterConsumerUseCase : IRegisterConsumerUseCase
 {
-    private readonly IConsumidorWriteOnlyRepository _writeOnlyRepository;
-    private readonly IConsumidorReadOnlyRepository _readOnlyRepository;
+    private readonly IConsumerWriteOnlyRepository _writeOnlyRepository;
+    private readonly IConsumerReadOnlyRepository _readOnlyRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
     private readonly PasswordEncripter _passwordEncripter;
 
-    public RegisterConsumidorUseCase(
-        IConsumidorWriteOnlyRepository writeOnlyRepository, 
-        IConsumidorReadOnlyRepository readOnlyRepository,
+    public RegisterConsumerUseCase(
+        IConsumerWriteOnlyRepository writeOnlyRepository, 
+        IConsumerReadOnlyRepository readOnlyRepository,
         IUnitOfWork unitOfWork,
         IMapper mapper,
         PasswordEncripter passwordEncripter)
@@ -31,26 +31,26 @@ public class RegisterConsumidorUseCase : IRegisterConsumidorUseCase
 
     }
 
-    public async Task<ResponseRegisteredConsumidorJson> Execute(RequestRegisterConsumidorJson request)
+    public async Task<ResponseRegisteredConsumerJson> Execute(RequestRegisterConsumerJson request)
     {
         //await Validate(request);
 
-        var consumidor = _mapper.Map<Domain.Entities.Consumidor>(request);
+        var consumer = _mapper.Map<Domain.Entities.Consumer>(request);
 
-        consumidor.Password = _passwordEncripter.Encrypt(request.Password); 
+        consumer.Password = _passwordEncripter.Encrypt(request.Password); 
 
-        await _writeOnlyRepository.Add(consumidor);
+        await _writeOnlyRepository.Add(consumer);
         await _unitOfWork.Commit(); 
 
-        return new ResponseRegisteredConsumidorJson 
+        return new ResponseRegisteredConsumerJson 
         { 
             Name = request.Nome,
         };
     }
 
-    private async Task Validate(RequestRegisterConsumidorJson request)
+    private async Task Validate(RequestRegisterConsumerJson request)
     {
-        var validator = new RegisterConsumidorValidator();
+        var validator = new RegisterConsumerValidator();
 
         var result = validator.Validate(request);
 

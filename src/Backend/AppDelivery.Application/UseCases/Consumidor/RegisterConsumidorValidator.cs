@@ -2,10 +2,10 @@
 using FluentValidation;
 using AppDelivery.Exceptions;
 
-namespace AppDelivery.Application.UseCases.Consumidor;
-internal class RegisterConsumidorValidator : AbstractValidator<RequestRegisterConsumidorJson>
+namespace AppDelivery.Application.UseCases.Consumer;
+internal class RegisterConsumerValidator : AbstractValidator<RequestRegisterConsumerJson>
 {
-    public RegisterConsumidorValidator()
+    public RegisterConsumerValidator()
     {
         RuleFor(user => user.Nome).NotEmpty().WithMessage(ResourceMessagesException.NAME_EMPTY);
         RuleFor(user => user.Email).NotEmpty().WithMessage(ResourceMessagesException.EMAIL_EMPTY);

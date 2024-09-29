@@ -1,15 +1,15 @@
-﻿using AppDelivery.Domain.Repositories.Consumidor;
+﻿using AppDelivery.Domain.Repositories.Consumer;
 using AutoMapper;
 
-namespace AppDelivery.Application.UseCases.Consumidor
+namespace AppDelivery.Application.UseCases.Consumer
 {
-    public class GetConsumidorUseCase : IGetConsumidorUseCase, IGetConsumidorByIdUseCase
+    public class GetConsumerUseCase : IGetConsumerUseCase, IGetConsumerByIdUseCase
     {
-        private readonly IConsumidorReadOnlyRepository _readOnlyRepository;
+        private readonly IConsumerReadOnlyRepository _readOnlyRepository;
         private readonly IMapper _mapper;
 
-        public GetConsumidorUseCase(
-            IConsumidorReadOnlyRepository readOnlyRepository,
+        public GetConsumerUseCase(
+            IConsumerReadOnlyRepository readOnlyRepository,
             IMapper mapper)
         {
             _readOnlyRepository = readOnlyRepository;
@@ -17,17 +17,17 @@ namespace AppDelivery.Application.UseCases.Consumidor
 
         }
 
-        public async Task<List<Domain.Entities.Consumidor>> GetConsumidores()
+        public async Task<List<Domain.Entities.Consumer>> GetConsumers()
         {
-            var consumidor = await _readOnlyRepository.GetConsumidores();
-            return consumidor;
+            var consumer = await _readOnlyRepository.GetConsumers();
+            return consumer;
         }
 
-        public async Task<Domain.Entities.Consumidor> Execute(long Id)
+        public async Task<Domain.Entities.Consumer> Execute(long Id)
         {
-            var consumidor = await _readOnlyRepository.GetConsumidorById(Id);
+            var consumer = await _readOnlyRepository.GetConsumerById(Id);
 
-            return consumidor!;
+            return consumer!;
         }
     }
 }

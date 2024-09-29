@@ -1,8 +1,8 @@
-﻿namespace AppDelivery.Application.UseCases.Consumidor;
+﻿namespace AppDelivery.Application.UseCases.Consumer;
 
 
-public interface IGetConsumidorUseCase
+public interface IGetConsumerUseCase
 {
-    public Task<List<Domain.Entities.Consumidor>> GetConsumidores();
+    public Task<List<Domain.Entities.Consumer>> GetConsumers();
     //Task<Domain.Entities.User> GetUserById(long id);
 }

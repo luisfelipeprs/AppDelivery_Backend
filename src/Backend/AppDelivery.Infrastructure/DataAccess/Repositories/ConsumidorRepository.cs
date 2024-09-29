@@ -1,53 +1,53 @@
 ﻿using AppDelivery.Domain.Entities;
-using AppDelivery.Domain.Repositories.Consumidor;
+using AppDelivery.Domain.Repositories.Consumer;
 using Microsoft.EntityFrameworkCore;
 
 namespace AppDelivery.Infrastructure.DataAccess.Repositories;
-public class ConsumidorRepository : IConsumidorWriteOnlyRepository, IConsumidorReadOnlyRepository, IConsumidorUpdateOnlyRepository
+public class ConsumerRepository : IConsumerWriteOnlyRepository, IConsumerReadOnlyRepository, IConsumerUpdateOnlyRepository
 {
     private readonly AppDeliveryDbContext _dbContext;
 
-    public ConsumidorRepository(AppDeliveryDbContext dbContext)
+    public ConsumerRepository(AppDeliveryDbContext dbContext)
     {
         _dbContext = dbContext;
     }
 
-    public async Task Add(Consumidor consumidor)
+    public async Task Add(Consumer consumer)
     {
-        await _dbContext.Consumidores.AddAsync(consumidor);
+        await _dbContext.Consumers.AddAsync(consumer);
     }
 
-    public async Task<List<Consumidor>> GetConsumidores()
+    public async Task<List<Consumer>> GetConsumers()
     {
-        return await _dbContext.Consumidores.ToListAsync();
+        return await _dbContext.Consumers.ToListAsync();
     }
 
-    public async Task<Consumidor?> GetConsumidorById(long idConsumidor)
+    public async Task<Consumer?> GetConsumerById(long idConsumer)
     {
-        return await _dbContext.Consumidores.AsNoTracking().FirstOrDefaultAsync(c => c.Id == idConsumidor);
+        return await _dbContext.Consumers.AsNoTracking().FirstOrDefaultAsync(c => c.Id == idConsumer);
     }
 
     public async Task<bool> Delete(long id)
     {
-        var consumidor = await _dbContext.Consumidores.FirstOrDefaultAsync(c => c.Id == id);
-        if (consumidor == null)
+        var consumer = await _dbContext.Consumers.FirstOrDefaultAsync(c => c.Id == id);
+        if (consumer == null)
             return false;
 
-        _dbContext.Consumidores.Remove(consumidor);
+        _dbContext.Consumers.Remove(consumer);
         return true;
     }
 
-    public void Update(Consumidor consumidor)
+    public void Update(Consumer consumer)
     {
-        _dbContext.Consumidores.Update(consumidor);
+        _dbContext.Consumers.Update(consumer);
     }
 
-    async Task<Consumidor?> IConsumidorUpdateOnlyRepository.GetById(long id)
+    async Task<Consumer?> IConsumerUpdateOnlyRepository.GetById(long id)
     {
-        return await _dbContext.Consumidores.FirstOrDefaultAsync(c => c.Id == id);
+        return await _dbContext.Consumers.FirstOrDefaultAsync(c => c.Id == id);
     }
 
-    public Task<bool> ExistActiveConsumidorWithEmail(string email)
+    public Task<bool> ExistActiveConsumerWithEmail(string email)
     {
         throw new NotImplementedException();
     }

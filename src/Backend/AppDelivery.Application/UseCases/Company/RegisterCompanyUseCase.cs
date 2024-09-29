@@ -1,6 +1,6 @@
 ﻿using AppDelivery.Application.Services.Cryptography;
 using AppDelivery.Application.UseCases.Company;
-using AppDelivery.Application.UseCases.Consumidor;
+using AppDelivery.Application.UseCases.Consumer;
 using AppDelivery.Communication.Requests;
 using AppDelivery.Communication.Responses;
 using AppDelivery.Domain.Repositories;
