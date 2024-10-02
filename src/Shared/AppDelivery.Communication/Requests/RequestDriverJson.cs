@@ -11,6 +11,7 @@
         public string Cnh { get; set; } = string.Empty;
         public string Vehicle { get; set; } = string.Empty;
         public string DocumentationVehicle { get; set; } = string.Empty;
+        public string TypeDriver { get; set; } = string.Empty;
 
         public int? CompanyId { get; set; }
     }

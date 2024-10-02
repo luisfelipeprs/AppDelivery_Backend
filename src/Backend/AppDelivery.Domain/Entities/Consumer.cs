@@ -10,6 +10,7 @@ public class Consumer
     public DateTime DateOfBirth { get; set; } = DateTime.UtcNow;
     
     public List<Order>? Orders { get; set; }
+    public List<Review>? Reviews { get; set; }
 
 
     // Relacionamento com pedidos

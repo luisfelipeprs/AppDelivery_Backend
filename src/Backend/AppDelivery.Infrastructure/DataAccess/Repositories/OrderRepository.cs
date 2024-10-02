@@ -24,12 +24,12 @@ public class OrderRepository : IOrderWriteOnlyRepository, IOrderReadOnlyReposito
 
     public async Task<Order?> GetOrderById(long idOrder)
     {
-        return await _dbContext.Orders.AsNoTracking().FirstOrDefaultAsync(d => d.Id == idOrder);
+        return await _dbContext.Orders.AsNoTracking().FirstOrDefaultAsync(d => d.OrderId == idOrder);
     }
 
     public async Task<bool> Delete(long id)
     {
-        var order = await _dbContext.Orders.FirstOrDefaultAsync(d => d.Id == id);
+        var order = await _dbContext.Orders.FirstOrDefaultAsync(d => d.OrderId == id);
         if (order == null)
             return false;
 
@@ -44,6 +44,6 @@ public class OrderRepository : IOrderWriteOnlyRepository, IOrderReadOnlyReposito
 
     async Task<Order?> IOrderUpdateOnlyRepository.GetById(long id)
     {
-        return await _dbContext.Orders.FirstOrDefaultAsync(d => d.Id == id);
+        return await _dbContext.Orders.FirstOrDefaultAsync(d => d.OrderId == id);
     }
 }

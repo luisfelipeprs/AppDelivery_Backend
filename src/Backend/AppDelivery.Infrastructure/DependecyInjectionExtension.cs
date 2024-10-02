@@ -1,17 +1,19 @@
 ﻿using AppDelivery.Domain.Repositories;
+using AppDelivery.Domain.Repositories.Company;
+using AppDelivery.Domain.Repositories.Consumer;
+using AppDelivery.Domain.Repositories.Delivery;
+using AppDelivery.Domain.Repositories.Driver;
+using AppDelivery.Domain.Repositories.Order;
+using AppDelivery.Domain.Repositories.Review;
 using AppDelivery.Domain.Repositories.User;
 using AppDelivery.Infrastructure.DataAccess;
 using AppDelivery.Infrastructure.DataAccess.Repositories;
-using FluentMigrator.Runner;
 using AppDelivery.Infrastructure.Extensions;
+using FluentMigrator.Runner;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using AppDelivery.Domain.Repositories.Consumer;
-using AppDelivery.Domain.Repositories.Company;
-using AppDelivery.Domain.Repositories.Driver;
-using AppDelivery.Domain.Repositories.Order;
 
 namespace AppDelivery.Infrastructure;
 public static class DependecyInjectionExtension
@@ -56,7 +58,15 @@ public static class DependecyInjectionExtension
 
         services.AddScoped<IOrderWriteOnlyRepository, OrderRepository>();
         services.AddScoped<IOrderReadOnlyRepository, OrderRepository>();
-        services.AddScoped<IOrderUpdateOnlyRepository, OrderRepository>();
+        services.AddScoped<IOrderUpdateOnlyRepository, OrderRepository>(); 
+        
+        services.AddScoped<IReviewWriteOnlyRepository, ReviewRepository>();
+        services.AddScoped<IReviewReadOnlyRepository, ReviewRepository>();
+        services.AddScoped<IReviewUpdateOnlyRepository, ReviewRepository>(); 
+        
+        services.AddScoped<IDeliveryWriteOnlyRepository, DeliveryRepository>();
+        services.AddScoped<IDeliveryReadOnlyRepository, DeliveryRepository>();
+        services.AddScoped<IDeliveryUpdateOnlyRepository, DeliveryRepository>();
     }
     private static void AddFluentMigrator_MySql(IServiceCollection services, IConfiguration configuration)
     {

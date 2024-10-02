@@ -1,5 +1,5 @@
 ﻿namespace AppDelivery.Communication.Requests;
-public class RequestOrderJson
+public class RequestAddressJson
 {
     public long AddressId { get; set; }
     public string Street { get; set; } = string.Empty;

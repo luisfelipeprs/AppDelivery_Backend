@@ -3,8 +3,10 @@ using AppDelivery.Application.Services.Cryptography;
 using AppDelivery.Application.UseCases;
 using AppDelivery.Application.UseCases.Company;
 using AppDelivery.Application.UseCases.Consumer;
+using AppDelivery.Application.UseCases.Delivery;
 using AppDelivery.Application.UseCases.Driver;
 using AppDelivery.Application.UseCases.Order;
+using AppDelivery.Application.UseCases.Review;
 using AppDelivery.Application.UseCases.User;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -63,6 +65,20 @@ public static class DependecyInjectionExtension
         services.AddScoped<IGetOrderByIdUseCase, GetOrderUseCase>();
         services.AddScoped<IUpdateOrderUseCase, UpdateOrderUseCase>();
         services.AddScoped<IDeleteOrderUseCase, DeleteOrderUseCase>();
+
+        // review
+        services.AddScoped<IRegisterReviewUseCase, RegisterReviewUseCase>();
+        services.AddScoped<IGetReviewUseCase, GetReviewUseCase>();
+        services.AddScoped<IGetReviewByIdUseCase, GetReviewUseCase>();
+        services.AddScoped<IUpdateReviewUseCase, UpdateReviewUseCase>();
+        services.AddScoped<IDeleteReviewUseCase, DeleteReviewUseCase>();        
+
+        // delivery
+        services.AddScoped<IRegisterDeliveryUseCase, RegisterDeliveryUseCase>();
+        services.AddScoped<IGetDeliveryUseCase, GetDeliveryUseCase>();
+        services.AddScoped<IGetDeliveryByIdUseCase, GetDeliveryUseCase>();
+        services.AddScoped<IUpdateDeliveryUseCase, UpdateDeliveryUseCase>();
+        services.AddScoped<IDeleteDeliveryUseCase, DeleteDeliveryUseCase>();
     }
 
     private static void AddPasswordEncrypter(IServiceCollection services)

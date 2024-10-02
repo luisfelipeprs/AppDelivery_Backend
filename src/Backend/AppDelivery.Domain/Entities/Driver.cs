@@ -1,12 +1,9 @@
-﻿using System;
-
-namespace AppDelivery.Domain.Entities
+﻿namespace AppDelivery.Domain.Entities
 {
     public enum TypeDriver
     {
-        Undefined,
-        Internal,
-        External
+        Car = 0,
+        Motorcycle = 1,
     }
     public class Driver
     {
@@ -20,9 +17,11 @@ namespace AppDelivery.Domain.Entities
         public string Vehicle { get; set; } = string.Empty;
         public string DocumentationVehicle { get; set; } = string.Empty;
 
-        public int? CompanyId { get; set; }
+        public long? CompanyId { get; set; }
+        public Company? Company { get; set; }
         public TypeDriver TypeDriver { get; set; }
 
         public ICollection<Delivery>? Deliveries { get; set; }
+        public List<Review>? Reviews { get; set; }
     }
 }
