@@ -29,5 +29,11 @@ namespace AppDelivery.Application.UseCases.Order
 
             return order!;
         }
+
+        public async Task<List<Domain.Entities.Order>> GetOrdersAvailable()
+        {
+            var order = await _readOnlyRepository.GetOrdersAvailable();
+            return order;
+        }
     }
 }

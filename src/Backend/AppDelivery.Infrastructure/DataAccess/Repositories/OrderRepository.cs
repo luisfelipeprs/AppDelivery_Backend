@@ -22,6 +22,14 @@ public class OrderRepository : IOrderWriteOnlyRepository, IOrderReadOnlyReposito
         return await _dbContext.Orders.ToListAsync();
     }
 
+    public async Task<List<Order>> GetOrdersAvailable()
+    {
+        return await _dbContext.Orders
+            .Where(o => o.Status == OrderStatus.Available)
+            .ToListAsync();
+    }
+
+
     public async Task<Order?> GetOrderById(long idOrder)
     {
         return await _dbContext.Orders.AsNoTracking().FirstOrDefaultAsync(d => d.OrderId == idOrder);
@@ -46,4 +54,5 @@ public class OrderRepository : IOrderWriteOnlyRepository, IOrderReadOnlyReposito
     {
         return await _dbContext.Orders.FirstOrDefaultAsync(d => d.OrderId == id);
     }
+
 }
