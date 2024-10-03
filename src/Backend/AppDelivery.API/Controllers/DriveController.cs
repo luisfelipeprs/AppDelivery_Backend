@@ -1,4 +1,5 @@
 using AppDelivery.Application.UseCases.Driver;
+using AppDelivery.Application.UseCases.Driver;
 using AppDelivery.Communication.Requests;
 using AppDelivery.Communication.Responses;
 using AppDelivery.Domain.Entities;
@@ -9,7 +10,6 @@ namespace AppDelivery.API.Controllers;
 [ApiController]
 public class DriverController : ControllerBase
 {
-    // Create (Registro de usuário)
     [HttpPost]
     [ProducesResponseType(typeof(ResponseRegisteredDriverJson), StatusCodes.Status201Created)]
     public async Task<IActionResult> Register(
@@ -18,6 +18,21 @@ public class DriverController : ControllerBase
     {
         var result = await useCase.Execute(request);
         return Created(string.Empty, result);
+    }
+
+    [HttpPost]
+    [Route("login")]
+    [ProducesResponseType(typeof(ResponseLoginDriverJson), StatusCodes.Status200OK)]
+    public async Task<IActionResult> Login(
+    [FromServices] ILoginDriverUseCase useCase,
+    [FromBody] RequestLoginDriverJson request)
+    {
+        var (json, message) = await useCase.Login(request);
+        if (json == null)
+        {
+            return BadRequest(message);
+        }
+        return Ok(json);
     }
 
     [HttpGet]

@@ -3,5 +3,6 @@
     public interface IGetDeliveryUseCase
     {
         public Task<List<Domain.Entities.Delivery>> GetDeliveries();
+        public Task<List<Domain.Entities.Delivery>> GetDeliveriesRecords();
     }
 }

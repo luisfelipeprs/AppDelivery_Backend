@@ -39,6 +39,7 @@ public static class DependecyInjectionExtension
 
         // consumers
         services.AddScoped<IRegisterConsumerUseCase, RegisterConsumerUseCase>();
+        services.AddScoped<ILoginConsumerUseCase, LoginConsumerUseCase>();
         services.AddScoped<IGetConsumerUseCase, GetConsumerUseCase>();
         services.AddScoped<IGetConsumerByIdUseCase, GetConsumerUseCase>();
         services.AddScoped<IUpdateConsumerUseCase, UpdateConsumerUseCase>();
@@ -46,6 +47,7 @@ public static class DependecyInjectionExtension
 
         // company
         services.AddScoped<IRegisterCompanyUseCase, RegisterCompanyUseCase>();
+        services.AddScoped<ILoginCompanyUseCase, LoginCompanyUseCase>();
         services.AddScoped<IGetCompanyUseCase, GetCompanyUseCase>();
         services.AddScoped<IGetCompanyByIdUseCase, GetCompanyUseCase>();
         services.AddScoped<IUpdateCompanyUseCase, UpdateCompanyUseCase>();
@@ -53,6 +55,7 @@ public static class DependecyInjectionExtension
 
         // driver
         services.AddScoped<IRegisterDriverUseCase, RegisterDriverUseCase>();
+        services.AddScoped<ILoginDriverUseCase, LoginDriverUseCase>();
         services.AddScoped<IGetDriverUseCase, GetDriverUseCase>();
         services.AddScoped<IGetDriverByIdUseCase, GetDriverUseCase>();
         services.AddScoped<IUpdateDriverUseCase, UpdateDriverUseCase>();

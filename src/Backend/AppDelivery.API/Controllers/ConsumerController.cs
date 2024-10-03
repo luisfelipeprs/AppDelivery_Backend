@@ -1,4 +1,5 @@
-﻿using AppDelivery.Application.UseCases.Consumer;
+﻿using AppDelivery.Application.UseCases.Company;
+using AppDelivery.Application.UseCases.Consumer;
 using AppDelivery.Communication.Requests;
 using AppDelivery.Communication.Responses;
 using AppDelivery.Domain.Entities;
@@ -9,7 +10,6 @@ namespace AppDelivery.API.Controllers;
 [ApiController]
 public class ConsumerController : ControllerBase
 {
-    // Create (Registro de usuário)
     [HttpPost]
     [ProducesResponseType(typeof(ResponseRegisteredConsumerJson), StatusCodes.Status201Created)]
     public async Task<IActionResult> Register(
@@ -20,7 +20,21 @@ public class ConsumerController : ControllerBase
         return Created(string.Empty, result);
     }
 
-    // Read (Obter todos os usuários)
+    [HttpPost]
+    [Route("login")]
+    [ProducesResponseType(typeof(ResponseLoginConsumerJson), StatusCodes.Status200OK)]
+    public async Task<IActionResult> Login(
+        [FromServices] ILoginConsumerUseCase useCase,
+        [FromBody] RequestLoginConsumerJson request)
+    {
+        var (json, message) = await useCase.Login(request);
+        if (json == null)
+        {
+            return BadRequest(message);
+        }
+        return Ok(json);
+    }
+
     [HttpGet]
     [ProducesResponseType(typeof(List<Consumer>), StatusCodes.Status200OK)]
     public async Task<List<Consumer>> GetConsumers(

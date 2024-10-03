@@ -34,6 +34,7 @@ internal class AutoMapping : Profile
             .ForMember(dest => dest.Password, opt => opt.Ignore())
             .ForMember(dest => dest.Id, opt => opt.Ignore());
 
+        CreateMap<RequestLoginConsumerJson, Consumer>();
         CreateMap<RequestRegisterConsumerJson, Consumer>()
             .ForMember(dest => dest.Password, opt => opt.Ignore())
             .ForMember(dest => dest.Id, opt => opt.Ignore());
@@ -41,12 +42,14 @@ internal class AutoMapping : Profile
             .ForMember(dest => dest.Password, opt => opt.Ignore())
             .ForMember(dest => dest.Id, opt => opt.Ignore());
 
+        CreateMap<RequestLoginCompanyJson, Company>();
         CreateMap<RequestRegisterCompanyJson, Company>()
             .ForMember(dest => dest.Password, opt => opt.Ignore());
         CreateMap<RequestCompanyJson, Company>()
             .ForMember(dest => dest.Password, opt => opt.Ignore())
             .ForMember(dest => dest.Id, opt => opt.Ignore());
 
+        CreateMap<RequestLoginDriverJson, Driver>();
         CreateMap<RequestRegisterDriverJson, Driver>()
             .ForMember(dest => dest.Password, opt => opt.Ignore());
         CreateMap<RequestDriverJson, Driver>()

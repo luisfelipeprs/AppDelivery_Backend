@@ -2,6 +2,7 @@ using AppDelivery.Application.UseCases.Delivery;
 using AppDelivery.Communication.Requests;
 using AppDelivery.Communication.Responses;
 using AppDelivery.Domain.Entities;
+using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppDelivery.API.Controllers;
@@ -25,6 +26,16 @@ public class DeliveryController : ControllerBase
         [FromServices] IGetDeliveryUseCase useCase)
     {
         var result = await useCase.GetDeliveries();
+        return result;
+    }
+
+    [HttpGet]
+    [Route("delivery-records")]
+    [ProducesResponseType(typeof(List<Delivery>), StatusCodes.Status200OK)]
+    public async Task<List<Delivery>> GetDeliveriesRecords(
+        [FromServices] IGetDeliveryUseCase useCase)
+    {
+        var result = await useCase.GetDeliveriesRecords();
         return result;
     }
 

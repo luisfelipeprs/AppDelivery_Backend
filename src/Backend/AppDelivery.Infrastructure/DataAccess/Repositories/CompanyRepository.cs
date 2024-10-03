@@ -50,4 +50,13 @@ public class CompanyRepository : ICompanyWriteOnlyRepository, ICompanyReadOnlyRe
     {
         throw new NotImplementedException();
     }
+
+    public async Task<Company?> GetByEmail(string email)
+    {
+        // Busca a empresa ativa pelo e-mail
+        var company = await _dbContext.Companies
+            .FirstOrDefaultAsync(c => c.Email == email);
+
+        return company; // Login bem-sucedido, retorna a empresa
+    }
 }

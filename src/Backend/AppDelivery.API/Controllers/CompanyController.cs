@@ -20,6 +20,20 @@ public class CompanyController : ControllerBase
         return Created(string.Empty, result);
     }
 
+    [HttpPost]
+    [Route("login")]
+    [ProducesResponseType(typeof(ResponseLoginCompanyJson), StatusCodes.Status200OK)]
+    public async Task<IActionResult> Login(
+        [FromServices] ILoginCompanyUseCase useCase,
+        [FromBody] RequestLoginCompanyJson request)
+    {
+        var (json, message) = await useCase.Login(request);
+        if (json == null) {
+            return BadRequest(message);
+        }
+        return Ok(json);
+    }
+
     [HttpGet]
     [ProducesResponseType(typeof(List<Company>), StatusCodes.Status200OK)]
     public async Task<List<Company>> GetCompany(

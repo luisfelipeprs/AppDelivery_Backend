@@ -29,5 +29,7 @@ namespace AppDelivery.Application.UseCases.Delivery
 
             return delivery!;
         }
+
+        public async Task<List<Domain.Entities.Delivery>> GetDeliveriesRecords() => await _readOnlyRepository.GetDeliveriesRecords();
     }
 }

@@ -51,4 +51,6 @@ public class DeliveryRepository : IDeliveryWriteOnlyRepository, IDeliveryReadOnl
     {
         throw new NotImplementedException();
     }
+
+    public async Task<List<Delivery>> GetDeliveriesRecords() => await _dbContext.Deliveries.Where(d => d.Status != DeliveryStatus.InTransit && d.Status != DeliveryStatus.NotStarted).ToListAsync();
 }

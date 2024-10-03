@@ -51,4 +51,12 @@ public class DriverRepository : IDriverWriteOnlyRepository, IDriverReadOnlyRepos
     {
         throw new NotImplementedException();
     }
+
+    public async Task<Driver?> GetByEmail(string email)
+    {
+        var driver = await _dbContext.Drivers
+            .FirstOrDefaultAsync(c => c.Email == email);
+
+        return driver;
+    }
 }
