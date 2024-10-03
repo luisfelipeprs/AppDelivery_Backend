@@ -28,6 +28,17 @@ public class OrderController : ControllerBase
         return result;
     }
 
+
+    [HttpGet]
+    [Route("order-available")]
+    [ProducesResponseType(typeof(List<Order>), StatusCodes.Status200OK)]
+    public async Task<List<Order>> GetOrdersAvailable(
+        [FromServices] IGetOrderUseCase useCase)
+    {
+        var result = await useCase.GetOrdersAvailable();
+        return result;
+    }
+
     [HttpGet]
     [Route("{id}")]
     [ProducesResponseType(typeof(ResponseOrderJson), StatusCodes.Status200OK)]
