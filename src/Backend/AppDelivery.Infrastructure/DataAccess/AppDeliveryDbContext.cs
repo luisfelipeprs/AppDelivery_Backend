@@ -82,14 +82,20 @@ public class AppDeliveryDbContext : DbContext
             .IsRequired(); // Longitude obrigatória
 
         modelBuilder.Entity<Order>()
-           .Property(e => e.Status)
-           .HasConversion(
-               v => v.ToString(),
-               v => (OrderStatus)Enum.Parse(typeof(OrderStatus), v)
-        );
+            .Property(e => e.Status)
+            .HasConversion(
+                v => v.ToString(),
+                v => (OrderStatus)Enum.Parse(typeof(OrderStatus), v)
+            );
+        modelBuilder.Entity<Order>()
+            .Property(e => e.PaymentMethod)
+            .HasConversion(
+                v => v.ToString(),
+                v => (PaymentMethod)Enum.Parse(typeof(PaymentMethod), v)
+);
 
         // Configuração do enum EntityType para Review
-       modelBuilder.Entity<Review>()
+        modelBuilder.Entity<Review>()
             .Property(e => e.EntityType)
             .HasConversion(
                 v => v.ToString(),

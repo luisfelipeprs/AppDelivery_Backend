@@ -16,6 +16,7 @@
         public string City { get; set; } = string.Empty;
         public string State { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
+        public string TypeCompany { get; set; } = string.Empty; // cafeteria, padaria, etc...
         public List<Order>? Orders { get; set; }
         public List<Review>? Reviews { get; set; }
 

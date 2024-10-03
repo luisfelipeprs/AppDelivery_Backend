@@ -2,10 +2,19 @@
 {
     public enum OrderStatus
     {
-        Available = 0, // disponivel pra entrega
-        Accepted = 1, // aceito pra entrega
-        Canceled = 2 // cancelado
+        Available = 0, // disponivel pra entrega     
+        InProgress = 1, // aceito pra entrega
+        Canceled = 2, // cancelado
+        Finished = 3 // pedido finalizado/concluído
     }
+    public enum PaymentMethod
+    {
+        Pix = 0,
+        Money = 1,
+        Debit = 2,
+        Credit = 3
+    }
+
     public class Order
     {
         public long OrderId { get; set; }
@@ -25,7 +34,7 @@
         // destinatário
         public double RecipientLatitude { get; set; }
         public double RecipientLongitude { get; set; }
-
+        public PaymentMethod PaymentMethod { get; set; }
         public TypeDriver DeliveryType { get; set; }
 
         // Informações de entrega

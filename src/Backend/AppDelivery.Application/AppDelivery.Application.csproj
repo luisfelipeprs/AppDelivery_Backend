@@ -8,8 +8,11 @@
 
   <ItemGroup>
     <Compile Remove="UseCases\Consumer\**" />
+    <Compile Remove="UseCases\Product\**" />
     <EmbeddedResource Remove="UseCases\Consumer\**" />
+    <EmbeddedResource Remove="UseCases\Product\**" />
     <None Remove="UseCases\Consumer\**" />
+    <None Remove="UseCases\Product\**" />
   </ItemGroup>
 
   <ItemGroup>

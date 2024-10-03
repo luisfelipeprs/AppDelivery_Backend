@@ -8,6 +8,7 @@ public class RequestOrderJson
     public string State { get; set; } = string.Empty;
     public string PostalCode { get; set; } = string.Empty; // cep
     public string Country { get; set; } = string.Empty;
+    public string? PaymentMethod { get; set; }
 
     public long DeliveryId { get; set; }
     public long CompanyId { get; set; }

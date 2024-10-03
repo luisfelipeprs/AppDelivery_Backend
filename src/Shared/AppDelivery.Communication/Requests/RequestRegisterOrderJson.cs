@@ -4,9 +4,10 @@
     {
         public long OrderId { get; set; }
         public DateTime OrderDate { get; set; }
-        public string Status { get; set; }
+        public string Status { get; set; } = null!;
         public string ProductName { get; set; } = string.Empty;
         public string ProductDescription { get; set; } = string.Empty;
+        public string? PaymentMethod { get; set; }
 
         // remetente
         public double SenderLatitude { get; set; }
