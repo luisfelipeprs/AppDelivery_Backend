@@ -1,4 +1,5 @@
 ﻿namespace AppDelivery.Communication.Requests;
+
 public class RequestRegisterDeliveryJson
 {
     public long DeliveryId { get; set; }

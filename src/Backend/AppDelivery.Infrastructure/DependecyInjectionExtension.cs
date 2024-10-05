@@ -4,6 +4,7 @@ using AppDelivery.Domain.Repositories.Consumer;
 using AppDelivery.Domain.Repositories.Delivery;
 using AppDelivery.Domain.Repositories.Driver;
 using AppDelivery.Domain.Repositories.Order;
+using AppDelivery.Domain.Repositories.ResetPassword;
 using AppDelivery.Domain.Repositories.Review;
 using AppDelivery.Domain.Repositories.User;
 using AppDelivery.Infrastructure.DataAccess;
@@ -67,6 +68,9 @@ public static class DependecyInjectionExtension
         services.AddScoped<IDeliveryWriteOnlyRepository, DeliveryRepository>();
         services.AddScoped<IDeliveryReadOnlyRepository, DeliveryRepository>();
         services.AddScoped<IDeliveryUpdateOnlyRepository, DeliveryRepository>();
+        
+        services.AddScoped<IResetPasswordWriteOnlyRepository, ResetPasswordRepository>();
+        services.AddScoped<IResetPasswordReadOnlyRepository, ResetPasswordRepository>();
     }
     private static void AddFluentMigrator_MySql(IServiceCollection services, IConfiguration configuration)
     {

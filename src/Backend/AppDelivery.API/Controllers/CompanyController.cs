@@ -1,5 +1,6 @@
 ﻿using AppDelivery.Application.UseCases.Company;
 using AppDelivery.Application.UseCases.Consumer;
+using AppDelivery.Application.UseCases.ResetPassword;
 using AppDelivery.Communication.Requests;
 using AppDelivery.Communication.Responses;
 using AppDelivery.Domain.Entities;
@@ -36,7 +37,7 @@ public class CompanyController : ControllerBase
 
     [HttpGet]
     [ProducesResponseType(typeof(List<Company>), StatusCodes.Status200OK)]
-    public async Task<List<Company>> GetCompany(
+    public async Task<List<Company>> GetCompany( 
         [FromServices] IGetCompanyUseCase useCase)
     {
         var result = await useCase.GetCompanies();

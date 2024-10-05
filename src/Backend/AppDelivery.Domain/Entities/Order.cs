@@ -13,6 +13,13 @@
         Money = 1,
         Debit = 2,
         Credit = 3
+    }    
+
+    public enum Load
+    {
+        Light = 0,
+        Medium = 1,
+        Heavy = 2,
     }
 
     public class Order
@@ -22,6 +29,7 @@
         public OrderStatus Status { get; set; }
         public string ProductName { get; set; } = string.Empty;
         public string ProductDescription { get; set; } = string.Empty;
+        public Load Load { get; set; }
 
         // remetente
         public double SenderLatitude { get; set; }
@@ -46,5 +54,4 @@
         public Consumer? Consumer { get; set; }
         public Company? Company { get; set; }
     }
-
 }

@@ -10,6 +10,8 @@ public class RequestOrderJson
     public string Country { get; set; } = string.Empty;
     public string? PaymentMethod { get; set; }
 
+    public string? Load { get; set; } = string.Empty;
+
     public long DeliveryId { get; set; }
     public long CompanyId { get; set; }
     public long DriverId { get; set; }

@@ -28,6 +28,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseMiddleware<CultureMiddleware>();
+app.UseMiddleware<WebSocketMiddleware>();
 
 app.UseHttpsRedirection();
 

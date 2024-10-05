@@ -6,6 +6,7 @@ using AppDelivery.Application.UseCases.Consumer;
 using AppDelivery.Application.UseCases.Delivery;
 using AppDelivery.Application.UseCases.Driver;
 using AppDelivery.Application.UseCases.Order;
+using AppDelivery.Application.UseCases.ResetPassword;
 using AppDelivery.Application.UseCases.Review;
 using AppDelivery.Application.UseCases.User;
 using Microsoft.Extensions.DependencyInjection;
@@ -82,6 +83,9 @@ public static class DependecyInjectionExtension
         services.AddScoped<IGetDeliveryByIdUseCase, GetDeliveryUseCase>();
         services.AddScoped<IUpdateDeliveryUseCase, UpdateDeliveryUseCase>();
         services.AddScoped<IDeleteDeliveryUseCase, DeleteDeliveryUseCase>();
+
+        // resetPassword
+        services.AddScoped<IResetPasswordUseCase, ResetPasswordUseCase>();
     }
 
     private static void AddPasswordEncrypter(IServiceCollection services)

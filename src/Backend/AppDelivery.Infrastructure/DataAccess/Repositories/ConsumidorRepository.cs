@@ -52,7 +52,7 @@ public class ConsumerRepository : IConsumerWriteOnlyRepository, IConsumerReadOnl
         throw new NotImplementedException();
     }
 
-    public async Task<Consumer?> GetByEmail(string email)
+    public async Task<Consumer?> GetConsumerByEmail(string email)
     {
         var consumer = await _dbContext.Consumers
             .FirstOrDefaultAsync(c => c.Email == email);

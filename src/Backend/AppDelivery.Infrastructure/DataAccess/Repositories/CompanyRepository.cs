@@ -16,6 +16,10 @@ public class CompanyRepository : ICompanyWriteOnlyRepository, ICompanyReadOnlyRe
     {
         await _dbContext.Companies.AddAsync(company);
     }
+    //public async Task AddToken(PasswordResetToken token)
+    //{
+    //    await _dbContext.PasswordResetToken.AddAsync(token);
+    //}
 
     public async Task<List<Company>> GetCompanies()
     {
@@ -41,22 +45,29 @@ public class CompanyRepository : ICompanyWriteOnlyRepository, ICompanyReadOnlyRe
         _dbContext.Companies.Update(company);
     }
 
-    async Task<Company?> ICompanyUpdateOnlyRepository.GetById(long id)
-    {
-        return await _dbContext.Companies.FirstOrDefaultAsync(c => c.Id == id);
-    }
 
     public Task<bool> ExistActiveCompanyWithEmail(string email)
     {
         throw new NotImplementedException();
     }
 
-    public async Task<Company?> GetByEmail(string email)
+    public async Task<Company?> GetCompanyByEmail(string email)
     {
         // Busca a empresa ativa pelo e-mail
         var company = await _dbContext.Companies
             .FirstOrDefaultAsync(c => c.Email == email);
 
         return company; // Login bem-sucedido, retorna a empresa
+    }
+
+    //public async Task<PasswordResetToken?> GetToken(string token)
+    //{
+    //    var Entitytoken = await _dbContext.PasswordResetToken.FirstOrDefaultAsync(e => e.ResetToken == token);
+    //    return Entitytoken;
+    //}
+
+    public async Task<Company?> GetById(long id)
+    {
+        return await _dbContext.Companies.FirstOrDefaultAsync(c => c.Id == id);
     }
 }

@@ -37,7 +37,7 @@ public class LoginConsumerUseCase : ILoginConsumerUseCase
 
         consumerRequest.Password = _passwordEncripter.Encrypt(request.Password);
 
-        var consumer = await _readOnlyRepository.GetByEmail(consumerRequest.Email);
+        var consumer = await _readOnlyRepository.GetConsumerByEmail(consumerRequest.Email);
 
         if (consumer == null) 
         {

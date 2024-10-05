@@ -43,6 +43,7 @@ internal class AutoMapping : Profile
             .ForMember(dest => dest.Id, opt => opt.Ignore());
 
         CreateMap<RequestLoginCompanyJson, Company>();
+        CreateMap<RequestConfirmResetJson, Company>();
         CreateMap<RequestRegisterCompanyJson, Company>()
             .ForMember(dest => dest.Password, opt => opt.Ignore());
         CreateMap<RequestCompanyJson, Company>()
@@ -85,6 +86,16 @@ internal class AutoMapping : Profile
         CreateMap<RequestRegisterDeliveryJson, Delivery>();
 
         CreateMap<RequestDeliveryJson, Delivery>();
+
+        CreateMap<RequestResetPasswordJson, PasswordResetToken>();
+        CreateMap<RequestResetPasswordJson, Company>();
+        CreateMap<RequestResetPasswordJson, Consumer>();
+        CreateMap<RequestResetPasswordJson, Driver>(); 
+        
+        CreateMap<RequestConfirmResetJson, PasswordResetToken>();
+        CreateMap<RequestConfirmResetJson, Company>();
+        CreateMap<RequestConfirmResetJson, Consumer>();
+        CreateMap<RequestConfirmResetJson, Driver>();
     }
     private void DomainToResponse()
     {

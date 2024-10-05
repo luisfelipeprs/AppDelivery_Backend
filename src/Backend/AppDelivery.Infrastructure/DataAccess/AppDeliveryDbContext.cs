@@ -13,6 +13,7 @@ public class AppDeliveryDbContext : DbContext
     public DbSet<Order> Orders { get; set; }
     public DbSet<Delivery> Deliveries { get; set; }
     public DbSet<Review> Reviews { get; set; }
+    public DbSet<PasswordResetToken> PasswordResetToken { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -100,6 +101,19 @@ public class AppDeliveryDbContext : DbContext
             .HasConversion(
                 v => v.ToString(),
                 v => (EntityType)Enum.Parse(typeof(EntityType), v)
+            );
+
+        modelBuilder.Entity<PasswordResetToken>()
+            .Property(e => e.TypeEntity)
+            .HasConversion(
+                v => v.ToString(),
+                v => (TypeEntity)Enum.Parse(typeof(TypeEntity), v)
+            );
+        modelBuilder.Entity<Order>()
+            .Property(e => e.Load)
+            .HasConversion(
+                v => v.ToString(),
+                v => (Load)Enum.Parse(typeof(Load), v)
             );
 
         //modelBuilder.Entity<Review>()

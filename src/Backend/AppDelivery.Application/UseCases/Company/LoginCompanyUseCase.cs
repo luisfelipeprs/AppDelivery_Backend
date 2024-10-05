@@ -37,7 +37,7 @@ public class LoginCompanyUseCase : ILoginCompanyUseCase
 
         companyRequest.Password = _passwordEncripter.Encrypt(request.Password);
 
-        var company = await _readOnlyRepository.GetByEmail(companyRequest.Email);
+        var company = await _readOnlyRepository.GetCompanyByEmail(companyRequest.Email);
 
         if (company == null) 
         {

@@ -24,6 +24,8 @@
         // Alterar para TypeDriver
         public string? DeliveryType { get; set; } = string.Empty;
 
+        public string? Load { get; set; } = string.Empty;
+
         // Informações de entrega
         public long? DeliveryId { get; set; }
         public long? ConsumerId { get; set; }

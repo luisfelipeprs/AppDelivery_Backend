@@ -37,7 +37,7 @@ public class LoginDriverUseCase : ILoginDriverUseCase
 
         driverRequest.Password = _passwordEncripter.Encrypt(request.Password);
 
-        var driver = await _readOnlyRepository.GetByEmail(driverRequest.Email);
+        var driver = await _readOnlyRepository.GetDriverByEmail(driverRequest.Email);
 
         if (driver == null) 
         {
