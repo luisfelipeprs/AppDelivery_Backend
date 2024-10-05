@@ -1,5 +1,6 @@
 ﻿using AppDelivery.Application.Services.AutoMapper;
 using AppDelivery.Application.Services.Cryptography;
+using AppDelivery.Application.Services.WebSocketDeliveryTrackingService;
 using AppDelivery.Application.UseCases;
 using AppDelivery.Application.UseCases.Company;
 using AppDelivery.Application.UseCases.Consumer;
@@ -9,6 +10,7 @@ using AppDelivery.Application.UseCases.Order;
 using AppDelivery.Application.UseCases.ResetPassword;
 using AppDelivery.Application.UseCases.Review;
 using AppDelivery.Application.UseCases.User;
+using AppDelivery.Application.UseCases.WebSocketTrackingDelivery;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AppDelivery.Application;
@@ -86,6 +88,12 @@ public static class DependecyInjectionExtension
 
         // resetPassword
         services.AddScoped<IResetPasswordUseCase, ResetPasswordUseCase>();
+
+        // websocket
+
+        services.AddSingleton<IWebSocketTrackingDeliveryUseCase, WebSocketTrackingDeliveryUseCase>();
+        services.AddSingleton<WebSocketDeliveryTrackingService>();
+
     }
 
     private static void AddPasswordEncrypter(IServiceCollection services)
