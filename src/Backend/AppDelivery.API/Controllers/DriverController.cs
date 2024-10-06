@@ -36,17 +36,22 @@ public class DriverController : ControllerBase
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(List<Driver>), StatusCodes.Status200OK)]
-    public async Task<List<Driver>> GetDrivers(
+    [ProducesResponseType(typeof(ResponseDriversJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseDriversJson), StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> GetDrivers(
         [FromServices] IGetDriverUseCase useCase)
     {
         var result = await useCase.GetDrivers();
-        return result;
+        if (result.Drivers.Count != 0)
+        {
+            return Ok(result);
+        }
+        return NoContent();
     }
 
     [HttpGet]
     [Route("{id}")]
-    [ProducesResponseType(typeof(ResponseDriverJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseDriverByIdJson), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(
         [FromServices] IGetDriverByIdUseCase useCases,

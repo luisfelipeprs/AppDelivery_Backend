@@ -36,18 +36,23 @@ public class ConsumerController : ControllerBase
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(List<Consumer>), StatusCodes.Status200OK)]
-    public async Task<List<Consumer>> GetConsumers(
+    [ProducesResponseType(typeof(ResponseConsumerJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> GetConsumers(
         [FromServices] IGetConsumerUseCase useCase)
     {
         var result = await useCase.GetConsumers();
-        return result;
+        if (result.Consumers.Count != 0)
+        {
+            return Ok(result);
+        }
+        return NoContent();
     }
 
     // Read (Obter usuário por ID)
     [HttpGet]
     [Route("{id}")]
-    [ProducesResponseType(typeof(ResponseConsumerJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseConsumerByIdJson), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(
         [FromServices] IGetConsumerByIdUseCase useCases,

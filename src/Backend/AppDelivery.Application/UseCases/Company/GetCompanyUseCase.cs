@@ -1,4 +1,5 @@
-﻿using AppDelivery.Domain.Repositories.Company;
+﻿using AppDelivery.Communication.Responses;
+using AppDelivery.Domain.Repositories.Company;
 using AutoMapper;
 
 namespace AppDelivery.Application.UseCases.Company
@@ -17,17 +18,23 @@ namespace AppDelivery.Application.UseCases.Company
 
         }
 
-        public async Task<List<Domain.Entities.Company>> GetCompanies()
+        public async Task<ResponseCompaniesJson> GetCompanies()
         {
-            var company = await _readOnlyRepository.GetCompanies();
-            return company;
+            var companies = await _readOnlyRepository.GetCompanies();
+            return new ResponseCompaniesJson
+            {
+                Companies = _mapper.Map<List<ResponseShortCompanyJson>>(companies)
+            };
         }
 
-        public async Task<Domain.Entities.Company> Execute(long Id)
+        public async Task<ResponseCompanyJson> Execute(long Id)
         {
             var company = await _readOnlyRepository.GetCompanyById(Id);
 
-            return company!;
+            return new ResponseCompanyJson
+            {
+                Company = _mapper.Map<ResponseCompanyDataJson>(company)
+            };
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using AppDelivery.Domain.Repositories.Consumer;
+﻿using AppDelivery.Communication.Responses;
+using AppDelivery.Domain.Repositories.Consumer;
 using AutoMapper;
 
 namespace AppDelivery.Application.UseCases.Consumer
@@ -17,17 +18,23 @@ namespace AppDelivery.Application.UseCases.Consumer
 
         }
 
-        public async Task<List<Domain.Entities.Consumer>> GetConsumers()
+        public async Task<ResponseConsumerJson> GetConsumers()
         {
             var consumer = await _readOnlyRepository.GetConsumers();
-            return consumer;
+            return new ResponseConsumerJson
+            {
+                Consumers = _mapper.Map<List<ResponseConsumerDataJson>>(consumer)
+            };
         }
 
-        public async Task<Domain.Entities.Consumer> Execute(long Id)
+        public async Task<ResponseConsumerByIdJson> Execute(long Id)
         {
             var consumer = await _readOnlyRepository.GetConsumerById(Id);
 
-            return consumer!;
+            return new ResponseConsumerByIdJson
+            {
+                Consumer = _mapper.Map<ResponseConsumerDataJson>(consumer)
+            };
         }
     }
 }

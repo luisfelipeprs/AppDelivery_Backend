@@ -1,7 +1,9 @@
-﻿namespace AppDelivery.Application.UseCases.Company
+﻿using AppDelivery.Communication.Responses;
+
+namespace AppDelivery.Application.UseCases.Company
 {
     public interface IGetCompanyUseCase
     {
-        public Task<List<Domain.Entities.Company>> GetCompanies();
+        public Task<ResponseCompaniesJson> GetCompanies();
     }
 }

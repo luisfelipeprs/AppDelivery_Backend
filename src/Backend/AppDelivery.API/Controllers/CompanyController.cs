@@ -4,6 +4,7 @@ using AppDelivery.Application.UseCases.ResetPassword;
 using AppDelivery.Communication.Requests;
 using AppDelivery.Communication.Responses;
 using AppDelivery.Domain.Entities;
+using Azure;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppDelivery.API.Controllers;
@@ -36,12 +37,17 @@ public class CompanyController : ControllerBase
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(List<Company>), StatusCodes.Status200OK)]
-    public async Task<List<Company>> GetCompany( 
+    [ProducesResponseType(typeof(ResponseCompaniesJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> GetCompany( 
         [FromServices] IGetCompanyUseCase useCase)
     {
         var result = await useCase.GetCompanies();
-        return result;
+        if (result.Companies.Count != 0)
+        {
+            return Ok(result);
+        }
+        return NoContent();
     }
 
     // Read (Obter usuário por ID)

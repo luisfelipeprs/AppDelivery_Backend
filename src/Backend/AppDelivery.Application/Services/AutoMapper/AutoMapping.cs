@@ -1,4 +1,5 @@
 ﻿using AppDelivery.Communication.Requests;
+using AppDelivery.Communication.Responses;
 using AppDelivery.Domain.Entities;
 using AutoMapper;
 
@@ -96,6 +97,14 @@ internal class AutoMapping : Profile
         CreateMap<RequestConfirmResetJson, Company>();
         CreateMap<RequestConfirmResetJson, Consumer>();
         CreateMap<RequestConfirmResetJson, Driver>();
+
+        CreateMap<Company, ResponseShortCompanyJson>();
+        CreateMap<Company, ResponseCompanyDataJson>();
+        CreateMap<Consumer, ResponseConsumerDataJson>();
+        CreateMap<Consumer, ResponseConsumerByIdJson>();
+        CreateMap<Driver, ResponseDriversJson>();
+        CreateMap<Driver, ResponseDriverDataJson>();
+        CreateMap<Driver, ResponseDriverByIdJson>();
     }
     private void DomainToResponse()
     {
