@@ -44,7 +44,9 @@ public class RegisterConsumerUseCase : IRegisterConsumerUseCase
 
         return new ResponseRegisteredConsumerJson 
         { 
-            Name = request.Nome,
+            Id = consumer.Id,
+            Name = request.Name,
+            Email = request.Email,
         };
     }
 

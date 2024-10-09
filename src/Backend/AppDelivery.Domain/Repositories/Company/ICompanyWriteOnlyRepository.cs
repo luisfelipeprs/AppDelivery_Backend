@@ -2,5 +2,5 @@
 public interface ICompanyWriteOnlyRepository
 {
     public Task Add(Entities.Company company);
-    Task<bool> Delete(long id);
+    Task<bool> Delete(Guid id);
 }

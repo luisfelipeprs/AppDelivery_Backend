@@ -21,7 +21,7 @@ public class UserRepository : IUserWriteOnlyRepository, IUserReadOnlyRepository,
     public async Task<List<User>> GetUsers() {
         return await _dbContext.Users.ToListAsync();
     }
-    public async Task<User?> GetUserById(long idUser)
+    public async Task<User?> GetUserById(Guid idUser)
     {
         return await _dbContext.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Id == idUser);
     }
@@ -32,7 +32,7 @@ public class UserRepository : IUserWriteOnlyRepository, IUserReadOnlyRepository,
         return await _dbContext.Users.AnyAsync(user => user.Email.Equals(email) && user.Active);
     }
 
-    public async Task<bool> Delete(long id)
+    public async Task<bool> Delete(Guid id)
     {
         var patient = await _dbContext.Users.FirstOrDefaultAsync(p => p.Id == id);
         if (patient == null)
@@ -47,7 +47,7 @@ public class UserRepository : IUserWriteOnlyRepository, IUserReadOnlyRepository,
         _dbContext.Users.Update(user);
     }
 
-    async Task<Domain.Entities.User?> IUserUpdateOnlyRepository.GetById(long id)
+    async Task<Domain.Entities.User?> IUserUpdateOnlyRepository.GetById(Guid id)
     {
         return await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == id);
     }

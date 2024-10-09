@@ -62,8 +62,7 @@ internal class AutoMapping : Profile
             .ForMember(dest => dest.OrderId, opt => opt.Ignore())
             .ForMember(dest => dest.Consumer, opt => opt.Ignore())
             .ForMember(dest => dest.Company, opt => opt.Ignore())
-            .ForMember(dest => dest.Delivery, opt => opt.Ignore())
-            .ForMember(dest => dest.DeliveryType, opt => opt.MapFrom(src => MapDeliveryType(src.DeliveryType)));
+            .ForMember(dest => dest.Delivery, opt => opt.Ignore());
 
         CreateMap<RequestOrderJson, Order>()
             .ForMember(dest => dest.OrderId, opt => opt.Ignore())

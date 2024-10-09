@@ -23,7 +23,7 @@ namespace AppDelivery.Application.UseCases.User
             return users;
         }
 
-        public async Task<Domain.Entities.User> Execute(long Id)
+        public async Task<Domain.Entities.User> Execute(Guid Id)
         {
             var users = await _readOnlyRepository.GetUserById(Id);
                

@@ -24,7 +24,7 @@
 
     public class Order
     {
-        public long OrderId { get; set; }
+        public Guid OrderId { get; set; } = Guid.NewGuid();
         public DateTime OrderDate { get; set; }
         public OrderStatus Status { get; set; }
         public string ProductName { get; set; } = string.Empty;
@@ -46,10 +46,10 @@
         public TypeDriver DeliveryType { get; set; }
 
         // Informações de entrega
-        public long? DeliveryId { get; set; }
-        public long? ConsumerId { get; set; }
-        public long? CompanyId { get; set; }        
-        
+        public Guid? DeliveryId { get; set; }
+        public Guid? ConsumerId { get; set; }
+        public Guid? CompanyId { get; set; }
+
         public Delivery? Delivery { get; set; }
         public Consumer? Consumer { get; set; }
         public Company? Company { get; set; }

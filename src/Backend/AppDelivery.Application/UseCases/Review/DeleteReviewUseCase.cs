@@ -14,7 +14,7 @@ public class DeleteReviewUseCase : IDeleteReviewUseCase
         _unitOfWork = unitOfWork;
     }
 
-    public async Task Execute(long id)
+    public async Task Execute(Guid id)
     {
         var result = await _repository.Delete(id);
 

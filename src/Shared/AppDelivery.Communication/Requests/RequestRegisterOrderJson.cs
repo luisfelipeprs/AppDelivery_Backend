@@ -2,33 +2,29 @@
 {
     public class RequestRegisterOrderJson
     {
-        public long OrderId { get; set; }
+        public Guid OrderId { get; set; }
         public DateTime OrderDate { get; set; }
         public string Status { get; set; } = null!;
         public string ProductName { get; set; } = string.Empty;
         public string ProductDescription { get; set; } = string.Empty;
         public string? PaymentMethod { get; set; }
 
-        // remetente
+
         public double SenderLatitude { get; set; }
         public double SenderLongitude { get; set; }
 
-        // parada (opcional)
-        public double? StopLatitude { get; set; } // Nullable para ser opcional
-        public double? StopLongitude { get; set; } // Nullable para ser opcional
+        public double? StopLatitude { get; set; }
+        public double? StopLongitude { get; set; }
 
-        // destinatário
         public double RecipientLatitude { get; set; }
         public double RecipientLongitude { get; set; }
 
-        // Alterar para TypeDriver
         public string? DeliveryType { get; set; } = string.Empty;
 
         public string? Load { get; set; } = string.Empty;
 
-        // Informações de entrega
-        public long? DeliveryId { get; set; }
-        public long? ConsumerId { get; set; }
-        public long? CompanyId { get; set; }
+        public Guid? DeliveryId { get; set; } = null;
+        public Guid? ConsumerId { get; set; }
+        public Guid? CompanyId { get; set; }
     }
 }

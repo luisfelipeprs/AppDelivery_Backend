@@ -3,5 +3,5 @@
 namespace AppDelivery.Application.UseCases.User;
 public interface IGetUserByIdUseCase
     {
-        Task<Domain.Entities.User> Execute(long id);
+        Task<Domain.Entities.User> Execute(Guid id);
     }

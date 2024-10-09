@@ -22,7 +22,7 @@ public class GetReviewUseCase : IGetReviewUseCase, IGetReviewByIdUseCase
         return review;
     }
 
-    public async Task<Domain.Entities.Review> Execute(long Id)
+    public async Task<Domain.Entities.Review> Execute(Guid Id)
     {
         var review = await _readOnlyRepository.GetReviewById(Id);
 

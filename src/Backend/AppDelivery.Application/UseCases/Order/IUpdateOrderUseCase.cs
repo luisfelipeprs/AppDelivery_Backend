@@ -4,6 +4,6 @@ namespace AppDelivery.Application.UseCases.Order
 {
     public interface IUpdateOrderUseCase
     {
-        Task Execute(long Id, RequestOrderJson request);
+        Task Execute(Guid Id, RequestOrderJson request);
     }
 }

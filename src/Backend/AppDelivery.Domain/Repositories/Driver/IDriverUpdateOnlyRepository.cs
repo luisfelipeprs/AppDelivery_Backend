@@ -2,5 +2,5 @@
 public interface IDriverUpdateOnlyRepository
 {
     void Update(Entities.Driver driver);
-    Task<Entities.Driver?> GetById(long id);
+    Task<Entities.Driver?> GetById(Guid id);
 }

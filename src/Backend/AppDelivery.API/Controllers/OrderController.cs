@@ -45,7 +45,7 @@ public class OrderController : ControllerBase
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(
         [FromServices] IGetOrderByIdUseCase useCases,
-        [FromRoute] long id)
+        [FromRoute] Guid id)
     {
         var response = await useCases.Execute(id);
 
@@ -59,7 +59,7 @@ public class OrderController : ControllerBase
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Update(
         [FromServices] IUpdateOrderUseCase useCase,
-        [FromRoute] long id,
+        [FromRoute] Guid id,
         [FromBody] RequestOrderJson request)
     {
         await useCase.Execute(id, request);
@@ -73,7 +73,7 @@ public class OrderController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteOrder(
         [FromServices] IDeleteOrderUseCase useCase,
-        [FromRoute] int id)
+        [FromRoute] Guid id)
     {
         await useCase.Execute(id);
         return NoContent();

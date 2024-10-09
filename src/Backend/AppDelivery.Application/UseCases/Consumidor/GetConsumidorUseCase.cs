@@ -27,7 +27,7 @@ namespace AppDelivery.Application.UseCases.Consumer
             };
         }
 
-        public async Task<ResponseConsumerByIdJson> Execute(long Id)
+        public async Task<ResponseConsumerByIdJson> Execute(Guid Id)
         {
             var consumer = await _readOnlyRepository.GetConsumerById(Id);
 

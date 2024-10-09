@@ -9,6 +9,6 @@ namespace AppDelivery.Application.UseCases.Company
 {
     public interface IUpdateCompanyUseCase
     {
-        Task Execute(long Id, RequestCompanyJson request);
+        Task Execute(Guid Id, RequestCompanyJson request);
     }
 }

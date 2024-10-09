@@ -27,7 +27,7 @@ namespace AppDelivery.Application.UseCases.Company
             };
         }
 
-        public async Task<ResponseCompanyJson> Execute(long Id)
+        public async Task<ResponseCompanyJson> Execute(Guid Id)
         {
             var company = await _readOnlyRepository.GetCompanyById(Id);
 

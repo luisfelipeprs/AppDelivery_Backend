@@ -22,12 +22,12 @@ public class DeliveryRepository : IDeliveryWriteOnlyRepository, IDeliveryReadOnl
         return await _dbContext.Deliveries.ToListAsync();
     }
 
-    public async Task<Delivery?> GetDeliveryById(long idDelivery)
+    public async Task<Delivery?> GetDeliveryById(Guid idDelivery)
     {
         return await _dbContext.Deliveries.AsNoTracking().FirstOrDefaultAsync(c => c.DeliveryId == idDelivery);
     }
 
-    public async Task<bool> Delete(long id)
+    public async Task<bool> Delete(Guid id)
     {
         var delivery = await _dbContext.Deliveries.FirstOrDefaultAsync(c => c.DeliveryId == id);
         if (delivery == null)
@@ -42,7 +42,7 @@ public class DeliveryRepository : IDeliveryWriteOnlyRepository, IDeliveryReadOnl
         _dbContext.Deliveries.Update(delivery);
     }
 
-    async Task<Delivery?> IDeliveryUpdateOnlyRepository.GetById(long id)
+    async Task<Delivery?> IDeliveryUpdateOnlyRepository.GetById(Guid id)
     {
         return await _dbContext.Deliveries.FirstOrDefaultAsync(c => c.DeliveryId == id);
     }

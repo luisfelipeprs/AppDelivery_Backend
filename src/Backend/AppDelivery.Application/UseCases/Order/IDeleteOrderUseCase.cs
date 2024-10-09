@@ -2,6 +2,6 @@
 {
     public interface IDeleteOrderUseCase
     {
-        Task Execute(long id);
+        Task Execute(Guid id);
     }
 }

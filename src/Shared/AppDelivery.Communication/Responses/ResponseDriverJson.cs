@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace AppDelivery.Communication.Responses;
 public class ResponseDriverJson
 {
-    public long Id { get; set; }
+    public Guid Id { get; set; }
     public bool Active { get; set; } = true;
     public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
     public string Name { get; set; } = string.Empty;
@@ -18,5 +18,5 @@ public class ResponseDriverJson
     public string DocumentationVehicle { get; set; } = string.Empty;
     public string TypeDriver { get; set; } = string.Empty;
 
-    public int? CompanyId { get; set; }
+    public Guid? CompanyId { get; set; }
 }

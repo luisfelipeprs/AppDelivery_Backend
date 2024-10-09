@@ -12,7 +12,7 @@
         public string Vehicle { get; set; } = string.Empty;
         public string DocumentationVehicle { get; set; } = string.Empty;
 
-        public long? CompanyId { get; set; }
+        public Guid? CompanyId { get; set; }
         public Company? Company { get; set; }
         public TypeDriver TypeDriver { get; set; }
 

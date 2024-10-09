@@ -27,7 +27,7 @@ namespace AppDelivery.Application.UseCases.Driver
             };
         }
 
-        public async Task<ResponseDriverByIdJson> Execute(long Id)
+        public async Task<ResponseDriverByIdJson> Execute(Guid Id)
         {
             var driver = await _readOnlyRepository.GetDriverById(Id);
 

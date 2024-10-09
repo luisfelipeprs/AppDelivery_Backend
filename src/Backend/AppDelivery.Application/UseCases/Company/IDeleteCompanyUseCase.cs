@@ -1,5 +1,5 @@
 ﻿namespace AppDelivery.Application.UseCases.Company;
 public interface IDeleteCompanyUseCase
 {
-    Task Execute(long id);
+    Task Execute(Guid id);
 }

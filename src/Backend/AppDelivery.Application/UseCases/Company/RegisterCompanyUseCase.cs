@@ -46,6 +46,8 @@ public class RegisterCompanyUseCase : IRegisterCompanyUseCase
         return new ResponseRegisteredCompanyJson
         {
             Name = request.Name,
+            Email = request.Email,
+            Id = company.Id
         };
     }
 

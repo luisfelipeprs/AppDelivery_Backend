@@ -22,12 +22,12 @@ public class DriverRepository : IDriverWriteOnlyRepository, IDriverReadOnlyRepos
         return await _dbContext.Drivers.ToListAsync();
     }
 
-    public async Task<Driver?> GetDriverById(long idDriver)
+    public async Task<Driver?> GetDriverById(Guid idDriver)
     {
         return await _dbContext.Drivers.AsNoTracking().FirstOrDefaultAsync(d => d.Id == idDriver);
     }
 
-    public async Task<bool> Delete(long id)
+    public async Task<bool> Delete(Guid id)
     {
         var driver = await _dbContext.Drivers.FirstOrDefaultAsync(d => d.Id == id);
         if (driver == null)
@@ -42,7 +42,7 @@ public class DriverRepository : IDriverWriteOnlyRepository, IDriverReadOnlyRepos
         _dbContext.Drivers.Update(driver);
     }
 
-    async Task<Driver?> IDriverUpdateOnlyRepository.GetById(long id)
+    async Task<Driver?> IDriverUpdateOnlyRepository.GetById(Guid id)
     {
         return await _dbContext.Drivers.FirstOrDefaultAsync(d => d.Id == id);
     }

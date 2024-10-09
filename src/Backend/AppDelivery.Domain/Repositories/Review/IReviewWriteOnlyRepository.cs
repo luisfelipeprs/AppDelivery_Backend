@@ -2,5 +2,5 @@
 public interface IReviewWriteOnlyRepository
 {
     public Task Add(Entities.Review review);
-    Task<bool> Delete(long id);
+    Task<bool> Delete(Guid id);
 }

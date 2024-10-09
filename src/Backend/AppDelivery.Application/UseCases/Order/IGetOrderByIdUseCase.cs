@@ -2,6 +2,6 @@
 {
     public interface IGetOrderByIdUseCase
     {
-        Task<Domain.Entities.Order> Execute(long id);
+        Task<Domain.Entities.Order> Execute(Guid id);
     }
 }

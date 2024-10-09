@@ -20,7 +20,7 @@ public class UpdateDeliveryUseCase : IUpdateDeliveryUseCase
         _readOnlyRepository = readOnlyRepository;
     }
 
-    public async Task Execute(long Id, RequestDeliveryJson request)
+    public async Task Execute(Guid Id, RequestDeliveryJson request)
     {
         //Validate(request);
 

@@ -2,6 +2,6 @@
 {
     public interface IGetDeliveryByIdUseCase
     {
-        Task<Domain.Entities.Delivery> Execute(long id);
+        Task<Domain.Entities.Delivery> Execute(Guid id);
     }
 }

@@ -40,7 +40,7 @@ public class UsersController : ControllerBase
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(
         [FromServices] IGetUserByIdUseCase useCases,
-        [FromRoute] long id)
+        [FromRoute] Guid id)
     {
         var response = await useCases.Execute(id);
 
@@ -55,7 +55,7 @@ public class UsersController : ControllerBase
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Update(
         [FromServices] IUpdateUserUseCase useCase,
-        [FromRoute] long id,
+        [FromRoute] Guid id,
         [FromBody] RequestUserJson request)
     {
         await useCase.Execute(id, request);
@@ -69,7 +69,7 @@ public class UsersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteUser(
         [FromServices] IDeleteUserUseCase useCase,
-        [FromRoute] int id)
+        [FromRoute] Guid id)
     {
         await useCase.Execute(id);
         return NoContent();

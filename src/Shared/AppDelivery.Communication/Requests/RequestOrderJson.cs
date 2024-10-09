@@ -1,7 +1,6 @@
 ﻿namespace AppDelivery.Communication.Requests;
 public class RequestOrderJson
 {
-    public long AddressId { get; set; }
     public string Street { get; set; } = string.Empty;
     public long NumberHouse { get; set; } // número da casa
     public string City { get; set; } = string.Empty;
@@ -12,8 +11,8 @@ public class RequestOrderJson
 
     public string? Load { get; set; } = string.Empty;
 
-    public long DeliveryId { get; set; }
-    public long CompanyId { get; set; }
-    public long DriverId { get; set; }
+    public Guid DeliveryId { get; set; }
+    public Guid? CompanyId { get; set; }
+    public Guid DriverId { get; set; }
 
 }

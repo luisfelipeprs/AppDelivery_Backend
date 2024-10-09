@@ -30,12 +30,12 @@ public class OrderRepository : IOrderWriteOnlyRepository, IOrderReadOnlyReposito
     }
 
 
-    public async Task<Order?> GetOrderById(long idOrder)
+    public async Task<Order?> GetOrderById(Guid idOrder)
     {
         return await _dbContext.Orders.AsNoTracking().FirstOrDefaultAsync(d => d.OrderId == idOrder);
     }
 
-    public async Task<bool> Delete(long id)
+    public async Task<bool> Delete(Guid id)
     {
         var order = await _dbContext.Orders.FirstOrDefaultAsync(d => d.OrderId == id);
         if (order == null)
@@ -50,7 +50,7 @@ public class OrderRepository : IOrderWriteOnlyRepository, IOrderReadOnlyReposito
         _dbContext.Orders.Update(order);
     }
 
-    async Task<Order?> IOrderUpdateOnlyRepository.GetById(long id)
+    async Task<Order?> IOrderUpdateOnlyRepository.GetById(Guid id)
     {
         return await _dbContext.Orders.FirstOrDefaultAsync(d => d.OrderId == id);
     }

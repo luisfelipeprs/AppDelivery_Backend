@@ -4,6 +4,6 @@ namespace AppDelivery.Application.UseCases.Delivery
 {
     public interface IUpdateDeliveryUseCase
     {
-        Task Execute(long Id, RequestDeliveryJson request);
+        Task Execute(Guid Id, RequestDeliveryJson request);
     }
 }

@@ -3,5 +3,5 @@
 namespace AppDelivery.Application.UseCases.Consumer;
 public interface IGetConsumerByIdUseCase
 {
-    Task<ResponseConsumerByIdJson> Execute(long id);
+    Task<ResponseConsumerByIdJson> Execute(Guid id);
 }

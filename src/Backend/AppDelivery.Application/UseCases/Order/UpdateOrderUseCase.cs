@@ -20,7 +20,7 @@ public class UpdateOrderUseCase : IUpdateOrderUseCase
         _readOnlyRepository = readOnlyRepository;
     }
 
-    public async Task Execute(long Id, RequestOrderJson request)
+    public async Task Execute(Guid Id, RequestOrderJson request)
     {
         //Validate(request);
 

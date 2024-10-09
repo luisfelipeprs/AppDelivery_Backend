@@ -2,5 +2,5 @@
 
 public interface IGetReviewByIdUseCase
 {
-    Task<Domain.Entities.Review> Execute(long id);
+    Task<Domain.Entities.Review> Execute(Guid id);
 }

@@ -12,7 +12,7 @@ public class ResetPasswordRepository : IResetPasswordWriteOnlyRepository, IReset
         _dbContext = dbContext;
     }
 
-    public async Task<bool> Delete(long id)
+    public async Task<bool> Delete(Guid id)
     {
         var resetpassword = await _dbContext.PasswordResetToken.FirstOrDefaultAsync(d => d.Id == id);
         if (resetpassword == null)

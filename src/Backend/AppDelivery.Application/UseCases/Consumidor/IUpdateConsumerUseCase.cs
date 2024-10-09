@@ -2,6 +2,6 @@
 
 public interface IUpdateConsumerUseCase
 {
-    Task Execute(long Id, RequestConsumerJson request);
+    Task Execute(Guid Id, RequestConsumerJson request);
 
 }

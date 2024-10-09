@@ -2,5 +2,5 @@
 public interface IDeliveryUpdateOnlyRepository
 {
     void Update(Entities.Delivery delivery);
-    Task<Entities.Delivery?> GetById(long id);
+    Task<Entities.Delivery?> GetById(Guid id);
 }

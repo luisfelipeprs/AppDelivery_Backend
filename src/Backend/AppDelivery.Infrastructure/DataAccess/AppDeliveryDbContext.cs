@@ -93,7 +93,14 @@ public class AppDeliveryDbContext : DbContext
             .HasConversion(
                 v => v.ToString(),
                 v => (PaymentMethod)Enum.Parse(typeof(PaymentMethod), v)
-);
+            );
+        modelBuilder.Entity<Order>()
+            .Property(e => e.DeliveryType)
+            .HasConversion(
+                v => v.ToString(),
+                v => (TypeDriver)Enum.Parse(typeof(TypeDriver), v)
+            );
+
 
         // Configuração do enum EntityType para Review
         modelBuilder.Entity<Review>()

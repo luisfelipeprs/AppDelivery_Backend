@@ -21,7 +21,7 @@ public class UpdateConsumerUseCase : IUpdateConsumerUseCase
         _readOnlyRepository = readOnlyRepository;
     }
 
-    public async Task Execute(long Id, RequestConsumerJson request)
+    public async Task Execute(Guid Id, RequestConsumerJson request)
     {
         //Validate(request);
 

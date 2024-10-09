@@ -34,7 +34,7 @@ public class ReviewController : ControllerBase
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(
         [FromServices] IGetReviewByIdUseCase useCases,
-        [FromRoute] long id)
+        [FromRoute] Guid id)
     {
         var response = await useCases.Execute(id);
 
@@ -49,7 +49,7 @@ public class ReviewController : ControllerBase
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Update(
         [FromServices] IUpdateReviewUseCase useCase,
-        [FromRoute] long id,
+        [FromRoute] Guid id,
         [FromBody] RequestReviewJson request)
     {
         await useCase.Execute(id, request);
@@ -63,7 +63,7 @@ public class ReviewController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteReview(
         [FromServices] IDeleteReviewUseCase useCase,
-        [FromRoute] int id)
+        [FromRoute] Guid id)
     {
         await useCase.Execute(id);
         return NoContent();

@@ -20,7 +20,7 @@ public class UpdateCompanyUseCase : IUpdateCompanyUseCase
         _readOnlyRepository = readOnlyRepository;
     }
 
-    public async Task Execute(long Id, RequestCompanyJson request)
+    public async Task Execute(Guid Id, RequestCompanyJson request)
     {
         //Validate(request);
 

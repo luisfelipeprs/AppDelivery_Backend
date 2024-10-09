@@ -2,6 +2,6 @@
 {
     public interface IDeleteDeliveryUseCase
     {
-        Task Execute(long id);
+        Task Execute(Guid id);
     }
 }

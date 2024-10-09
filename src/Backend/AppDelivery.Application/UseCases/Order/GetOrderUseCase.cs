@@ -23,7 +23,7 @@ namespace AppDelivery.Application.UseCases.Order
             return order;
         }
 
-        public async Task<Domain.Entities.Order> Execute(long Id)
+        public async Task<Domain.Entities.Order> Execute(Guid Id)
         {
             var order = await _readOnlyRepository.GetOrderById(Id);
 

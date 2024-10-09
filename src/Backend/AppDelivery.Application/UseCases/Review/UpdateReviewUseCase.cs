@@ -20,7 +20,7 @@ public class UpdateReviewUseCase : IUpdateReviewUseCase
         _readOnlyRepository = readOnlyRepository;
     }
 
-    public async Task Execute(long Id, RequestReviewJson request)
+    public async Task Execute(Guid Id, RequestReviewJson request)
     {
         //Validate(request);
 

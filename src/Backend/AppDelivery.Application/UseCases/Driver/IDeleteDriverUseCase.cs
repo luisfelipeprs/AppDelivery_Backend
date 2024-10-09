@@ -8,6 +8,6 @@ namespace AppDelivery.Application.UseCases.Driver
 {
     public interface IDeleteDriverUseCase
     {
-        Task Execute(long id);
+        Task Execute(Guid id);
     }
 }

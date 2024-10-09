@@ -22,12 +22,12 @@ public class ConsumerRepository : IConsumerWriteOnlyRepository, IConsumerReadOnl
         return await _dbContext.Consumers.ToListAsync();
     }
 
-    public async Task<Consumer?> GetConsumerById(long idConsumer)
+    public async Task<Consumer?> GetConsumerById(Guid idConsumer)
     {
         return await _dbContext.Consumers.AsNoTracking().FirstOrDefaultAsync(c => c.Id == idConsumer);
     }
 
-    public async Task<bool> Delete(long id)
+    public async Task<bool> Delete(Guid id)
     {
         var consumer = await _dbContext.Consumers.FirstOrDefaultAsync(c => c.Id == id);
         if (consumer == null)
@@ -42,7 +42,7 @@ public class ConsumerRepository : IConsumerWriteOnlyRepository, IConsumerReadOnl
         _dbContext.Consumers.Update(consumer);
     }
 
-    async Task<Consumer?> IConsumerUpdateOnlyRepository.GetById(long id)
+    async Task<Consumer?> IConsumerUpdateOnlyRepository.GetById(Guid id)
     {
         return await _dbContext.Consumers.FirstOrDefaultAsync(c => c.Id == id);
     }

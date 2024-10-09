@@ -26,12 +26,12 @@ public class CompanyRepository : ICompanyWriteOnlyRepository, ICompanyReadOnlyRe
         return await _dbContext.Companies.ToListAsync();
     }
 
-    public async Task<Company?> GetCompanyById(long idCompany)
+    public async Task<Company?> GetCompanyById(Guid idCompany)
     {
         return await _dbContext.Companies.AsNoTracking().FirstOrDefaultAsync(c => c.Id == idCompany);
     }
 
-    public async Task<bool> Delete(long id)
+    public async Task<bool> Delete(Guid id)
     {
         var company = await _dbContext.Companies.FirstOrDefaultAsync(c => c.Id == id);
         if (company == null) return false;
@@ -66,7 +66,7 @@ public class CompanyRepository : ICompanyWriteOnlyRepository, ICompanyReadOnlyRe
     //    return Entitytoken;
     //}
 
-    public async Task<Company?> GetById(long id)
+    public async Task<Company?> GetById(Guid id)
     {
         return await _dbContext.Companies.FirstOrDefaultAsync(c => c.Id == id);
     }

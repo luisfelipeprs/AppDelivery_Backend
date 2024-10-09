@@ -8,9 +8,9 @@ public enum TypeEntity
 }
 public class PasswordResetToken
 {
-    public long Id { get; set; }
+    public Guid Id { get; set; } = Guid.NewGuid();
     public TypeEntity TypeEntity { get; set; }
-    public long EntityId { get; set; }
+    public Guid EntityId { get; set; } = Guid.NewGuid();
     public string ResetToken { get; set; } = string.Empty;
     public DateTime ExpiresAt { get; set; }
     public bool Used { get; set; } = false;

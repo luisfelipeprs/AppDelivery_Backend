@@ -42,7 +42,9 @@ public class RegisterDriverUseCase : IRegisterDriverUseCase
 
         return new ResponseRegisteredDriverJson
         {
+            Id = driver.Id,
             Name = request.Name,
+            Email = request.Email,
         };
     }
 }

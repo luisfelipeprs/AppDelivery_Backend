@@ -2,5 +2,5 @@
 public interface IOrderUpdateOnlyRepository
 {
     void Update(Entities.Order order);
-    Task<Entities.Order?> GetById(long id);
+    Task<Entities.Order?> GetById(Guid id);
 }

@@ -2,5 +2,5 @@
 public interface IConsumerWriteOnlyRepository
 {
     public Task Add(Entities.Consumer consumer);
-    Task<bool> Delete(long id);
+    Task<bool> Delete(Guid id);
 }

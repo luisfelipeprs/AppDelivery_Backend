@@ -22,12 +22,12 @@ public class ReviewRepository : IReviewWriteOnlyRepository, IReviewReadOnlyRepos
         return await _dbContext.Reviews.ToListAsync();
     }
 
-    public async Task<Review?> GetReviewById(long idReview)
+    public async Task<Review?> GetReviewById(Guid idReview)
     {
         return await _dbContext.Reviews.AsNoTracking().FirstOrDefaultAsync(d => d.Id == idReview);
     }
 
-    public async Task<bool> Delete(long id)
+    public async Task<bool> Delete(Guid id)
     {
         var review = await _dbContext.Reviews.FirstOrDefaultAsync(d => d.Id == id);
         if (review == null)
@@ -42,7 +42,7 @@ public class ReviewRepository : IReviewWriteOnlyRepository, IReviewReadOnlyRepos
         _dbContext.Reviews.Update(review);
     }
 
-    async Task<Review?> IReviewUpdateOnlyRepository.GetById(long id)
+    async Task<Review?> IReviewUpdateOnlyRepository.GetById(Guid id)
     {
         return await _dbContext.Reviews.FirstOrDefaultAsync(d => d.Id == id);
     }

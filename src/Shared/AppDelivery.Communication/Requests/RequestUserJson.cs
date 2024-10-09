@@ -1,7 +1,7 @@
 ﻿namespace AppDelivery.Communication.Requests;
 public class RequestUserJson
 {
-    public long Id { get; set; }
+    public Guid Id { get; set; }
     public bool Active { get; set; } = true;
     public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
     public string Name { get; set; } = string.Empty;

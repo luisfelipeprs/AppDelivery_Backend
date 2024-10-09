@@ -2,6 +2,6 @@
 
 public interface IUpdateUserUseCase
 {
-    Task Execute(long Id, RequestUserJson request);
+    Task Execute(Guid Id, RequestUserJson request);
 
 }

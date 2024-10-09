@@ -55,7 +55,7 @@ public class DriverController : ControllerBase
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(
         [FromServices] IGetDriverByIdUseCase useCases,
-        [FromRoute] long id)
+        [FromRoute] Guid id)
     {
         var response = await useCases.Execute(id);
 
@@ -70,7 +70,7 @@ public class DriverController : ControllerBase
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Update(
         [FromServices] IUpdateDriverUseCase useCase,
-        [FromRoute] long id,
+        [FromRoute] Guid id,
         [FromBody] RequestDriverJson request)
     {
         await useCase.Execute(id, request);
@@ -84,7 +84,7 @@ public class DriverController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteDriver(
         [FromServices] IDeleteDriverUseCase useCase,
-        [FromRoute] int id)
+        [FromRoute] Guid id)
     {
         await useCase.Execute(id);
         return NoContent();

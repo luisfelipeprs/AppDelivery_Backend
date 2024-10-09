@@ -54,7 +54,10 @@ public class LoginCompanyUseCase : ILoginCompanyUseCase
 
         return (new ResponseLoginCompanyJson
         {
-            Id = company.Id
+            Id = company.Id,
+            Name = company.Name,
+            Email = company.Email,
+            Message = "Usuário encontrado!"
         }, string.Empty);
     }
 }

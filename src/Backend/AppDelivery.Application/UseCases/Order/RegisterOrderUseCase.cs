@@ -40,7 +40,7 @@ public class RegisterOrderUseCase : IRegisterOrderUseCase
 
         return new ResponseRegisteredOrderJson
         {
-            OrderId = request.OrderId,
+            OrderId = order.OrderId,
         };
     }
 }

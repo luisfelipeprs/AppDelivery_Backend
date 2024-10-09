@@ -9,6 +9,6 @@ namespace AppDelivery.Application.UseCases.Driver
 {
     public interface IUpdateDriverUseCase
     {
-        Task Execute(long Id, RequestDriverJson request);
+        Task Execute(Guid Id, RequestDriverJson request);
     }
 }

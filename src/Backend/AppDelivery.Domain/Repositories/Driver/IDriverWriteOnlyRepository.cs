@@ -2,5 +2,5 @@
 public interface IDriverWriteOnlyRepository
 {
     public Task Add(Entities.Driver driver);
-    Task<bool> Delete(long id);
+    Task<bool> Delete(Guid id);
 }

@@ -4,6 +4,6 @@ namespace AppDelivery.Application.UseCases.Driver
 {
     public interface IGetDriverByIdUseCase
     {
-        Task<ResponseDriverByIdJson> Execute(long id);
+        Task<ResponseDriverByIdJson> Execute(Guid id);
     }
 }

@@ -14,7 +14,7 @@ public class DeleteUserUseCase : IDeleteUserUseCase
         _unitOfWork = unitOfWork;
     }
 
-    public async Task Execute(long id)
+    public async Task Execute(Guid id)
     {
         var result = await _repository.Delete(id);
 

@@ -1,7 +1,7 @@
 ﻿namespace AppDelivery.Communication.Requests;
 public class RequestRegisterCompanyJson
 {
-    public long Id { get; set; }
+    public Guid Id { get; set; }
     public string Cnpj { get; set; } = string.Empty;
     public string Name { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;

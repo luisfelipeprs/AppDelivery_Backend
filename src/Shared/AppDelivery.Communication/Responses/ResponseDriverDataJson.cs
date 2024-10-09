@@ -7,7 +7,7 @@ public enum DriverType
 
 public class ResponseDriverDataJson
 {
-    public long Id { get; set; }
+    public Guid Id { get; set; }
     public bool Active { get; set; } = true;
     public string Name { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
@@ -16,6 +16,6 @@ public class ResponseDriverDataJson
     public string Vehicle { get; set; } = string.Empty;
     public string DocumentationVehicle { get; set; } = string.Empty;
 
-    public long? CompanyId { get; set; }
+    public Guid? CompanyId { get; set; }
     public DriverType DriverType { get; set; }
 }

@@ -2,5 +2,5 @@
 public interface ICompanyUpdateOnlyRepository
 {
     void Update(Entities.Company Company);
-    Task<Entities.Company?> GetById(long id);
+    Task<Entities.Company?> GetById(Guid id);
 }

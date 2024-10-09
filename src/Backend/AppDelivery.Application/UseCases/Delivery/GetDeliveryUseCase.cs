@@ -23,7 +23,7 @@ namespace AppDelivery.Application.UseCases.Delivery
             return delivery;
         }
 
-        public async Task<Domain.Entities.Delivery> Execute(long Id)
+        public async Task<Domain.Entities.Delivery> Execute(Guid Id)
         {
             var delivery = await _readOnlyRepository.GetDeliveryById(Id);
 

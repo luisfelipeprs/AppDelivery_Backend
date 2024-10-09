@@ -57,7 +57,7 @@ public class CompanyController : ControllerBase
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(
         [FromServices] IGetCompanyByIdUseCase useCases,
-        [FromRoute] long id)
+        [FromRoute] Guid id)
     {
         var response = await useCases.Execute(id);
 
@@ -71,7 +71,7 @@ public class CompanyController : ControllerBase
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Update(
         [FromServices] IUpdateCompanyUseCase useCase,
-        [FromRoute] long id,
+        [FromRoute] Guid id,
         [FromBody] RequestCompanyJson request)
     {
         await useCase.Execute(id, request);
@@ -84,7 +84,7 @@ public class CompanyController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Delete(
         [FromServices] IDeleteCompanyUseCase useCase,
-        [FromRoute] int id)
+        [FromRoute] Guid id)
     {
        await useCase.Execute(id);
         return NoContent();

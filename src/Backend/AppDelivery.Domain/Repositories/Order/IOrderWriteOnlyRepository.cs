@@ -2,5 +2,5 @@
 public interface IOrderWriteOnlyRepository
 {
     public Task Add(Entities.Order order);
-    Task<bool> Delete(long id);
+    Task<bool> Delete(Guid id);
 }

@@ -2,5 +2,5 @@
 public interface IUserUpdateOnlyRepository
 {
     void Update(Entities.User User);
-    Task<Entities.User?> GetById(long id);
+    Task<Entities.User?> GetById(Guid id);
 }

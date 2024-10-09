@@ -20,7 +20,7 @@ public class UpdateDriverUseCase : IUpdateDriverUseCase
         _readOnlyRepository = readOnlyRepository;
     }
 
-    public async Task Execute(long Id, RequestDriverJson request)
+    public async Task Execute(Guid Id, RequestDriverJson request)
     {
         //Validate(request);
 
