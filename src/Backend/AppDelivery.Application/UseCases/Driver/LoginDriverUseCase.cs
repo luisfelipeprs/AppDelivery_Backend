@@ -54,7 +54,9 @@ public class LoginDriverUseCase : ILoginDriverUseCase
 
         return (new ResponseLoginDriverJson
         {
-            Id = driver.Id
+            Id = driver.Id,
+            Name = driver.Name,
+            Email = driver.Email
         }, string.Empty);
     }
 }

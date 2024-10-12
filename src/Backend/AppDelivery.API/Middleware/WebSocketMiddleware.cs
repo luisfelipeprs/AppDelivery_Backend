@@ -11,10 +11,13 @@ public class WebSocketMiddleware
 
     public async Task Invoke(HttpContext context, IWebSocketTrackingDeliveryUseCase useCase)
     {
-        if (context.WebSockets.IsWebSocketRequest)
+        // Extrair o idOrder do contexto, por exemplo, da URL ou da query string
+        var orderId = context.Request.RouteValues["orderId"]?.ToString();
+
+        if (context.WebSockets.IsWebSocketRequest && !string.IsNullOrEmpty(orderId))
         {
             var webSocket = await context.WebSockets.AcceptWebSocketAsync();
-            await useCase.HandleWebSocketConnection(webSocket);
+            await useCase.HandleWebSocketConnection(webSocket, orderId); // Passa o orderId aqui
         }
         else
         {

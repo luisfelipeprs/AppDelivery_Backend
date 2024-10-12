@@ -18,18 +18,18 @@ public class WebSocketTrackingDeliveryController : ControllerBase
     }
 
     [HttpGet]
-    [Route("ws")]
-    public async Task<IActionResult> WebSocketEndpoint()
+    [Route("ws/{orderId}")]
+    public async Task<IActionResult> WebSocketEndpoint(string orderId)
     {
         if (HttpContext.WebSockets.IsWebSocketRequest)
         {
             var webSocket = await HttpContext.WebSockets.AcceptWebSocketAsync();
-            await _webSocketService.HandleWebSocketConnection(webSocket);
-            return new EmptyResult(); // Retorna uma resposta vazia após o processamento do WebSocket
+            await _webSocketService.HandleWebSocketConnection(webSocket, orderId); // passa o orderId
+            return new EmptyResult();
         }
         else
         {
-            return BadRequest("A requisição não é um WebSocket."); // Retorna erro se não for uma requisição WebSocket
+            return BadRequest("A requisição não é um WebSocket.");
         }
     }
 }

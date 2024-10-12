@@ -54,6 +54,8 @@ public class LoginConsumerUseCase : ILoginConsumerUseCase
 
         return (new ResponseLoginConsumerJson
         {
+            Name = consumer.Name,
+            Email = consumer.Email,
             Id = consumer.Id
         }, string.Empty);
     }

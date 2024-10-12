@@ -12,14 +12,15 @@ public class WebSocketTrackingDeliveryUseCase : IWebSocketTrackingDeliveryUseCas
         _webSocketService = webSocketService;
     }
 
-    public async Task HandleWebSocketConnection(WebSocket webSocket)
+    public async Task HandleWebSocketConnection(WebSocket webSocket, string orderId)
     {
-        await _webSocketService.HandleWebSocketConnection(webSocket);
+        await _webSocketService.HandleWebSocketConnection(webSocket, orderId); // Passa o orderId para o serviço
     }
 
-    public async Task TrackDeliveryCoordinates(GeolocationData data)
+    public async Task TrackDeliveryCoordinates(string idOrder, GeolocationData data)
     {
         var message = $"{data.IdOrder}: Latitude {data.Latitude}, Longitude {data.Longitude}";
-        await _webSocketService.SendMessageToClients(message);
+        Console.WriteLine("Message > ", message);
+        await _webSocketService.SendMessageToClients(idOrder, message); // Envia a mensagem para o idOrder correto
     }
 }

@@ -1,54 +1,83 @@
-﻿using System.Net;
+﻿using System.Collections.Concurrent;
 using System.Net.WebSockets;
 using System.Text;
-namespace AppDelivery.Application.Services.WebSocketDeliveryTrackingService;
-public class WebSocketDeliveryTrackingService
+
+namespace AppDelivery.Application.Services.WebSocketDeliveryTrackingService
 {
-    private readonly List<WebSocket> _clients = new List<WebSocket>();
-
-    public async Task HandleWebSocketConnection(WebSocket webSocket)
+    public class WebSocketDeliveryTrackingService
     {
-        Console.WriteLine("Adicionando cliente à lista.");
-        _clients.Add(webSocket);
-        Console.WriteLine($"Clientes conectados: {_clients.Count}");
+        // isso aqui vai mapear o carai do idOrder para a lista de websockets conectados
+        private readonly ConcurrentDictionary<string, List<WebSocket>> _clientsByOrderId = new ConcurrentDictionary<string, List<WebSocket>>();
 
-        var buffer = new byte[1024 * 4];
-
-        while (webSocket.State == WebSocketState.Open)
+        public async Task HandleWebSocketConnection(WebSocket webSocket, string idOrder)
         {
-            var result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+            _clientsByOrderId.AddOrUpdate(idOrder,
+                _ => new List<WebSocket> { webSocket },
+                (_, sockets) =>
+                {
+                    sockets.Add(webSocket);
+                    return sockets;
+                });
 
-            if (result.MessageType == WebSocketMessageType.Text)
+            var buffer = new byte[1024 * 4];
+
+            while (webSocket.State == WebSocketState.Open)
             {
-                var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
-                Console.WriteLine($"Mensagem recebida: {message}");
+                var result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
 
-                // Enviar a mensagem para todos os clientes conectados
-                await SendMessageToClients(message);
+                if (result.MessageType == WebSocketMessageType.Text)
+                {
+                    var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
+                    Console.WriteLine($"Mensagem recebida: {message}");
+                    await SendMessageToClients(idOrder, message);
+                    // Aqui você pode processar a mensagem e decidir se deve enviar de volta
+                }
+                else if (result.MessageType == WebSocketMessageType.Close)
+                {
+                    await webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Conexão fechada", CancellationToken.None);
+                    // Remover o cliente da lista ao fechar a conexão
+                    RemoveClient(idOrder, webSocket);
+                    Console.WriteLine("Cliente desconectado.");
+                }
             }
-            else if (result.MessageType == WebSocketMessageType.Close)
+
+            // Remover o cliente da lista quando a conexão é fechada
+            RemoveClient(idOrder, webSocket);
+        }
+
+        private void RemoveClient(string idOrder, WebSocket webSocket)
+        {
+            if (_clientsByOrderId.TryGetValue(idOrder, out var clients))
             {
-                await webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Conexão fechada", CancellationToken.None);
-                _clients.Remove(webSocket);
-                Console.WriteLine("Cliente desconectado.");
+                clients.Remove(webSocket);
+                if (clients.Count == 0)
+                {
+                    _clientsByOrderId.TryRemove(idOrder, out _); // Remove o idOrder se não houver mais clientes
+                }
             }
         }
 
-        // Remover o cliente da lista quando a conexão é fechada
-        _clients.Remove(webSocket);
-    }
-
-    public async Task SendMessageToClients(string message)
-    {
-        foreach (var client in _clients)
+        public async Task SendMessageToClients(string idOrder, string message)
         {
-            if (client.State == WebSocketState.Open)
+            if (_clientsByOrderId.TryGetValue(idOrder, out var clients))
             {
-                Console.WriteLine($"Enviando mensagens: {message}");
-                var buffer = Encoding.UTF8.GetBytes(message);
-                var arraySegment = new ArraySegment<byte>(buffer);
-                await client.SendAsync(arraySegment, WebSocketMessageType.Text, true, CancellationToken.None);
+                foreach (var client in clients)
+                {
+                    if (client.State == WebSocketState.Open)
+                    {
+                        var buffer = Encoding.UTF8.GetBytes(message);
+                        var arraySegment = new ArraySegment<byte>(buffer);
+                        await client.SendAsync(arraySegment, WebSocketMessageType.Text, true, CancellationToken.None);
+                        Console.WriteLine($"Mensagem enviada para o cliente com idOrder {idOrder}: {message}"); // Log aqui
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Nenhum cliente conectado para o idOrder {idOrder}.");
             }
         }
+
+
     }
 }
