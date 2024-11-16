@@ -30,18 +30,16 @@ namespace AppDelivery.Application.Services.WebSocketDeliveryTrackingService
                     var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
                     Console.WriteLine($"Mensagem recebida: {message}");
                     await SendMessageToClients(idOrder, message);
-                    // Aqui você pode processar a mensagem e decidir se deve enviar de volta
                 }
                 else if (result.MessageType == WebSocketMessageType.Close)
                 {
                     await webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Conexão fechada", CancellationToken.None);
-                    // Remover o cliente da lista ao fechar a conexão
+                    // removo cliente da lista ao fechar a conexão
                     RemoveClient(idOrder, webSocket);
                     Console.WriteLine("Cliente desconectado.");
                 }
             }
 
-            // Remover o cliente da lista quando a conexão é fechada
             RemoveClient(idOrder, webSocket);
         }
 
@@ -52,7 +50,7 @@ namespace AppDelivery.Application.Services.WebSocketDeliveryTrackingService
                 clients.Remove(webSocket);
                 if (clients.Count == 0)
                 {
-                    _clientsByOrderId.TryRemove(idOrder, out _); // Remove o idOrder se não houver mais clientes
+                    _clientsByOrderId.TryRemove(idOrder, out _);
                 }
             }
         }
@@ -68,7 +66,7 @@ namespace AppDelivery.Application.Services.WebSocketDeliveryTrackingService
                         var buffer = Encoding.UTF8.GetBytes(message);
                         var arraySegment = new ArraySegment<byte>(buffer);
                         await client.SendAsync(arraySegment, WebSocketMessageType.Text, true, CancellationToken.None);
-                        Console.WriteLine($"Mensagem enviada para o cliente com idOrder {idOrder}: {message}"); // Log aqui
+                        Console.WriteLine($"Mensagem enviada para o cliente com idOrder {idOrder}: {message}");
                     }
                 }
             }
